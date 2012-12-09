@@ -1,0 +1,7 @@
+# Listado de todos los paquetes requeridos para desplegar 
+# en cualquier ambiente con python2.7 easy_install y pip 
+Django==1.4
+Fabric==1.4.1
+pyst2==0.4
+South==0.7.4
+Sphinx==1.1.3
