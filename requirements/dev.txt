@@ -2,3 +2,4 @@
 -r common.txt
 django-debug-toolbar
 gunicorn
+south
