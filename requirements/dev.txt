@@ -1,5 +1,0 @@
-# Modulos requeridos para desplegar el portal en el ambiente de desarrollo
--r common.txt
-django-debug-toolbar
-gunicorn
-south
