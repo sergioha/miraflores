@@ -1,11 +1,14 @@
-from fabric.api import env, local, cd, hosts, run
+import os
+from fabric.api import env, require, local, cd, hosts, sudo, run
 from fabric.contrib import django
 
 django.project('miraflores')
 
+env.project_name = 'miraflores'
+env.server_name= 'sergiohinojosa.webfactional.com'
+env.webapps_root='/home/sergiohinojosa/webapps/'
+env.project_root=os.path.join(env.webapps_root, env.project_name)
 
-DEV_USERHOST = "sergiohinojosa@sergiohinojosa.webfactional.com"
-DEV_HOMEPATH = "webapps/miraflores"
 
 def prepare_deploy():
     local("./manage.py test")
