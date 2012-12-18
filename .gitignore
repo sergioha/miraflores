@@ -4,3 +4,5 @@
 *.sqlite3
 local_settings.py
 miraflores/wsgi.py
+media
+static
