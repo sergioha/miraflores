@@ -1,4 +1,5 @@
-LANGUAGES = [('en', 'en')]
+
+LANGUAGES = [('es', 'es')]
 DEFAULT_LANGUAGE = 0
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -7,7 +8,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 TIME_ZONE = 'America/La_Paz'
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
@@ -47,9 +48,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'cms.context_processors.media',
     'sekizai.context_processors.sekizai',
 )
-TEMPLATE_DIRS = (
-    "/home/sergio/Desktop/miraflores/devMiraflores/miraflores/miraflores/templates/",
-)
 CMS_TEMPLATES = (
     ('example.html', 'Template'),
 )
@@ -69,7 +67,6 @@ INSTALLED_APPS = (
     'cms',
     'menus',
     'mptt',
-    'south',
     'cms.plugins.text',
     'cms.plugins.picture',
     'cms.plugins.link',
