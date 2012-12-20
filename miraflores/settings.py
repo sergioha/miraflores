@@ -49,6 +49,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 CMS_TEMPLATES = (
     ('example.html', 'Template'),
+    ('inicio.html','Pagina de Inicio'),
 )
 CMS_MENU_TITLE_OVERWRITE = True
 ROOT_URLCONF = 'miraflores.urls'
