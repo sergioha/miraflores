@@ -1,4 +1,3 @@
-
 LANGUAGES = [('es', 'es')]
 DEFAULT_LANGUAGE = 0
 ADMINS = (
@@ -51,6 +50,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 CMS_TEMPLATES = (
     ('example.html', 'Template'),
 )
+CMS_MENU_TITLE_OVERWRITE = True
 ROOT_URLCONF = 'miraflores.urls'
 
 WSGI_APPLICATION = 'miraflores.wsgi.application'
