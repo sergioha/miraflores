@@ -15,7 +15,6 @@ env.repo = REPOSITORY
 env.home = "/home/%s" % USER
 env.project_dir = env.home + '/webapps/' + PROJECT_NAME
 env.project_dir_env = env.project_dir + PROJECT_NAME
-env.settings_dir = env.project_dir + '/' + SETTINGS_SUBDIR
 
 def deploy_templates():
     local("git push origin master")
@@ -26,4 +25,11 @@ def deploy_server():
         run("git pull")
     with cd(env.project_dir):
         run(". apache/bin/restart")
+
+def is_local_repo_clean(): """ Checks if there are uncommitted changes in the local git repository. """ 
+    with settings(warn_only=True): 
+        return local("git status 2>&1|grep 'nothing to commit' > /dev/null").succeeded
+
+def is_repo_clean(): """ Checks if there are uncommitted changes in the remote git repository. """ 
+    with settings(warn_only=True): return run("git status 2>&1|grep 'nothing to commit' > /dev/null").succeeded
 
