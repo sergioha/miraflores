@@ -3,7 +3,7 @@
 *.pyc
 *.sqlite3
 local_settings.py
-miraflores/wsgi.py
+wsgi.py
 fabsettings.py
 media
 static
