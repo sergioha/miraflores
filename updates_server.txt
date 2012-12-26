@@ -1,5 +1,2 @@
-unittest2
-mock
-django-nose
 
 
