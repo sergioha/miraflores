@@ -17,9 +17,19 @@ env.home = "/home/%s" % USER
 env.project_dir = env.home + '/webapps/' + PROJECT_NAME
 env.project_dir_env = env.project_dir + '/' + PROJECT_NAME
 
+def push():
+    with settings(warn_only=False):
+        local('git push origin master')
+
 def deploy_templates():
     local("git push origin master")
     deploy_server()
+
+def deploy_local():
+    with settings(warn_only=False):
+        local('python manage.py syncdb')
+        local('python manage.py migrate')
+        local('python manage.py run_gunicorn')
 
 def deploy_server():
     configure_server()
@@ -44,8 +54,8 @@ def server_update():
 
 def server_migrate():
     with cd(env.project_dir_env):
-        run("./manage.py syncdb")
-        run("./manage.py migrate")
+        run("python manage.py syncdb")
+        run("python manage.py migrate")
 
 def configure_server():
     run("source ~/.bashrc")
