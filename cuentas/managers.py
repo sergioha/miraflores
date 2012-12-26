@@ -30,10 +30,16 @@ class ClienteManager(UserManager):
         """
         ahora = get_fechahora()
 
-        usuario_nuevo = User.objects.create_user(email, email, password)
-        usuario_nuevo.is_active = False
+        usuario_nuevo = User.objects.create_user(username = email,
+                                                 first_name = nombre,
+                                                 last_name = apellidos,
+                                                 email = email,
+                                                 password= password,
+                                                 is_staff = False,
+                                                 is_active = False,
+                                                 is_superuser = False)
         usuario_nuevo.save()
-
+        print "llego aqui"
         cliente = self.crear_cuenta_cliente(usuario_nuevo, **kwargs)
         return usuario_nuevo
 

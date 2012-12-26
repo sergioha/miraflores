@@ -23,21 +23,15 @@ class Cliente(models.Model):
                                    verbose_name = 'Usuario',
                                    related_name = 'usuario_cliente')
 
-    nombre = models.CharField('Nombres',
-                              max_length = 100,
-                              blank = False)
-
-    apellidos = models.CharField('Apellidos',
-                                 max_length = 100,
-                                 blank = False)
-
     ultima_actividad = models.DateTimeField('Ultima Actividad',
                                             blank = True,
                                             null = True,
                                             help_text = 'Es la ultima fecha que el cliente estuvo activo.')
+    
     email_noconfirmado = models.EmailField('Direccion de Email no Confirmada',
                                            blank = True,
                                            help_text = 'Correo electronico temporal para modificar su correo electronico.')
+    
     email_confirmar_cambio = models.BooleanField('Permitir Cambio de email',
                                                  default = False,
                                                  help_text = 'Activar para permitir el camnio de email')
@@ -55,11 +49,11 @@ class Cliente(models.Model):
                                           max_length = 25,
                                           blank = False)
 
-    telefono = models.PositiveSmallIntegerField('Telefono Fijo',
+    telefono = models.IntegerField('Telefono Fijo',
                                           null = False,
                                           blank = False)
 
-    celular = models.PositiveSmallIntegerField('No Telefono Celular',
+    celular = models.IntegerField('No Telefono Celular',
                                           null = False,
                                           blank = False)
 
@@ -79,7 +73,7 @@ class Cliente(models.Model):
         verbose_name_plural = 'Cuentas de Clientes'
 
     def __unicode__(self):
-        return '%s' % self.user.username
+        return '%s' % self.usuario
 
     def requerimiento_cambio_email(self, email):
         """
