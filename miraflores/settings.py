@@ -56,6 +56,10 @@ ROOT_URLCONF = 'miraflores.urls'
 
 WSGI_APPLICATION = 'miraflores.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth', 
     'django.contrib.contenttypes',
@@ -75,7 +79,21 @@ INSTALLED_APPS = (
     'cms.plugins.snippet',
     'cms.plugins.googlemap',
     'sekizai',
+    'cuentas',
 )
+
+LOGIN_REDIRECT_URL = '/cuentas/%(username)s/'
+LOGIN_URL = '/cuentas/ingresar/'
+LOGOUT_URL = '/cuentas/salir/'
+AUTH_PROFILE_MODULE = 'cuentas.Perfil'
+ANONYMOUS_USER_ID = -1
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sergio.hinojosa.avila@gmail.com'
+EMAIL_HOST_PASSWORD = 'test123456'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Sergio Hinojosa <sergio.hinojosa.avila@gmail.com>"
+
 
 LOGGING = {
     'version': 1,
