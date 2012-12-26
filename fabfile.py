@@ -24,8 +24,8 @@ def deploy_templates():
 def deploy_server():
     configure_server()
     is_repo_clean()
-    with cd(env.project_dir_env):
-        run("git pull")
+    server_update()
+    server_migrate()
     with cd(env.project_dir):
         run(". apache2/bin/restart")
 
@@ -36,6 +36,16 @@ def is_local_repo_clean():
 def is_repo_clean():
     with settings(warn_only=True):
         return run("git status 2>&1|grep 'nothing to commit' > /dev/null").succeeded
+
+def server_update():
+    with cd(env.project_dir_env):
+        run("git pull")
+        run("pip install updates_server.txt")
+
+def server_migrate():
+    with cd(env.project_dir_env):
+        run("./manage.py syncdb")
+        run("./manage.py migrate")
 
 def configure_server():
     run("source ~/.bashrc")

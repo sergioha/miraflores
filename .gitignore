@@ -3,7 +3,7 @@
 *.pyc
 *.sqlite3
 local_settings.py
-wsgi.py
+*wsgi*
 fabsettings.py
 media
 static
