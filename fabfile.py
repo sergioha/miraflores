@@ -32,12 +32,8 @@ def deploy_local():
         local('python manage.py run_gunicorn')
 
 def deploy_server():
-    configure_server()
     is_repo_clean()
     server_update()
-    server_migrate()
-    with cd(env.project_dir):
-        run(". apache2/bin/restart")
 
 def is_local_repo_clean():
     with settings(warn_only=True):
@@ -49,13 +45,19 @@ def is_repo_clean():
 
 def server_update():
     with cd(env.project_dir_env):
+        run(". ../env/bin/activate")
         run("git pull")
-        run("pip install updates_server.txt")
+        #run("cp updates_server.txt requirements.txt")
+        #run("pip-2.7 install requirements.txt")
+        run(". ../env/bin/activate && ./manage.py syncdb")
+        run("./manage.py migrate")
+        run(". apache2/bin/restart")
 
 def server_migrate():
     with cd(env.project_dir_env):
-        run("python manage.py syncdb")
-        run("python manage.py migrate")
+        run("./manage.py syncdb")
+        run("./manage.py migrate")
 
 def configure_server():
-    run("source ~/.bashrc")
+    with cd(env.project_dir):
+        run(". ../env/bin/activate")

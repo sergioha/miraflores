@@ -79,7 +79,6 @@ INSTALLED_APPS = (
     'cms.plugins.snippet',
     'cms.plugins.googlemap',
     'sekizai',
-    'cuentas',
 )
 
 LOGIN_REDIRECT_URL = '/cuentas/%(username)s/'
