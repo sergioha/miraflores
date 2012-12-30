@@ -79,12 +79,12 @@ INSTALLED_APPS = (
     'cms.plugins.snippet',
     'cms.plugins.googlemap',
     'sekizai',
+    'clientes',
 )
 
-LOGIN_REDIRECT_URL = '/cuentas/%(username)s/'
-LOGIN_URL = '/cuentas/ingresar/'
-LOGOUT_URL = '/cuentas/salir/'
-AUTH_PROFILE_MODULE = 'cuentas.Perfil'
+LOGIN_REDIRECT_URL = '/cliente/%(username)s/'
+LOGIN_URL = '/cliente/ingresar/'
+LOGOUT_URL = '/cliente/salir/'
 ANONYMOUS_USER_ID = -1
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sergio.hinojosa.avila@gmail.com'
@@ -106,29 +106,16 @@ LOGGING = {
             'format': '%(levelname)s %(asctime)s  %(module)s %(message)s'
         },
     },
+    'filters': {
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse'}
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'app': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    } 
+     }
+    }, 
 }
 try:
     LOCAL_SETTINGS
