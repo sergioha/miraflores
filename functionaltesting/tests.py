@@ -26,11 +26,8 @@ class ClienteTestSuite(LiveServerTestCase):
 
         clientes_link = self.browser.find_element_by_link_text('Clientes')
         self.assertEquals(clientes_link.text,u'Clientes')
-        clientes_link.send_keys(Keys.SPACE)
         clientes_link.click()
         body = self.browser.find_element_by_tag_name('body')
-        self.assertIn('0 Clientes', body.text)
-        nuevo_cliente_link = self.browser.find_element_by_link_text('Agregar Cliente')
+        self.assertIn('Cuentas de Clientes', body.text)
+        nuevo_cliente_link = self.browser.find_element_by_partial_link_text('Cuenta Cliente')
         nuevo_cliente_link.click()
-        # TODO: Gertrude uses the admin site to create a new Poll
-        self.fail('todo: terminar tests')
