@@ -35,7 +35,7 @@ class Cliente(models.Model):
     nombre_empresa = models.CharField('Nombre Empresa', max_length=100, blank=False,
                                       help_text='Si no tiene nombre coloque N/A por favor.')
     tipo_empresa = models.CharField('Tipo de Empresa', max_length=3, choices=TIPO_EMPRESA, blank=False)
-    numero_empleados = models.IntegerField('Numero de Empleaso')
+    numero_empleados = models.IntegerField('Numero de Empleados')
     productos = models.CharField ('Productos Fabricados', max_length=100)
     produccion = models.IntegerField('Produccion Mensual', blank=True, null=True,
                                      help_text = 'Estimado de prendas al mes que produce.')
@@ -51,7 +51,7 @@ class Cliente(models.Model):
         verbose_name_plural = 'Cuentas de Clientes'
         
     def __unicode__(self):
-        return '%s %s' % (self.nombres, self.apellidos)
+        return '%s %s con ci: %s' % (self.nombres, self.apellidos, self.ci)
 
     def set_password(self, contrasena):
         self.password = make_password(contrasena)
