@@ -33,7 +33,7 @@ settings.TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
 def main():
     from django.test.utils import get_runner
     test_runner = get_runner(settings)(interactive = True)
-    failures = test_runner.run_tests(['unittesting','clientes',])
+    failures = test_runner.run_tests(['unittesting','clientes','servicios'])
     sys.exit(failures)
 
 if __name__ == '__main__':
