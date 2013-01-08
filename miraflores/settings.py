@@ -1,3 +1,4 @@
+#encoding=utf-8
 LANGUAGES = [('es', 'es')]
 DEFAULT_LANGUAGE = 0
 ADMINS = (
@@ -80,6 +81,7 @@ INSTALLED_APPS = (
     'cms.plugins.googlemap',
     'sekizai',
     'clientes',
+    'servicios',
 )
 
 LOGIN_REDIRECT_URL = '/cliente/%(username)s/'
