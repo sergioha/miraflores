@@ -1,5 +1,6 @@
 unittest2
 mock
 django-nose
+factory_boy
 
 
