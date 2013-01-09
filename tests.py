@@ -25,7 +25,8 @@ settings.INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.sites',
-    'clientes',
+    #'clientes',
+    'servicios',
     'unittesting',
 )
 settings.TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
@@ -33,7 +34,7 @@ settings.TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
 def main():
     from django.test.utils import get_runner
     test_runner = get_runner(settings)(interactive = True)
-    failures = test_runner.run_tests(['unittesting','clientes','servicios'])
+    failures = test_runner.run_tests(['unittesting','servicios'])
     sys.exit(failures)
 
 if __name__ == '__main__':

@@ -1,7 +1,6 @@
 #encoding=utf-8
 from django.test import TestCase
 from clientes.models import Cliente
-from servicios.models import TipoServicio, Servicio
 
 class ClienteTestCase(TestCase):
     
@@ -40,35 +39,6 @@ class ClienteTestCase(TestCase):
     def test_verificar_contrasena(self):
         self.cliente_1 = self._crear_cuenta_cliente(self.ci_1, self.password)
         self.assertTrue(self.cliente_1.verificar_contrasena('123456'))
-
-class ServiciosTestCase(TestCase):
-    
-    contador_tipos = 0
-    tipo_servicio = None
-    
-    def setUp(self):
-        self.tipo_servicio = TipoServicio()
-        self.tipo_servicio.titulo='Pre Lavado'
-        self.tipo_servicio.descripcion = 'El prelavado de jeans se realiza en todos los servicios es la primera etapa'
-        self.tipo_servicio.save()
-        self.contador_tipos+=1
-    
-    def test_crear_nuevo_tipo_de_servicio(self):
-        tipo_servicio_1 = TipoServicio()
-        tipo_servicio_1.titulo='Efectos'
-        tipo_servicio_1.descripcion = 'Los efectos se realiza despues del Pre lavado'
-        tipo_servicio_1.save()
-        tipos = TipoServicio.objects.all()
-        self.assertEqual(len(tipos),self.contador_tipos+1)#verificamos el nuevo registro contando
-        self.assertIn(tipo_servicio_1, tipos, msg="El tipo de servicio no fue creado")
-
-    def test_crear_nuevo_servicio(self):
-        servicio = Servicio(tipo_servicio = self.tipo_servicio,
-                            nombre = 'stoneado',
-                            descripcion = 'lorem ipsum asimet duo',
-                            precio_bs = 1)
-        servicio.save()
-        self.assertEqual(len(Servicio.objects.all()),1)
 
 if __name__ == "__main__":
     unittest.main()
