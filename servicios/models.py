@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 
 from clientes.models import Cliente
 
+from servicios.managers import DetallesDeOrdenActivas
+
 TALLAS = (
     (1,'Pequeno'),
     (2,'Juvenil'),
@@ -11,21 +13,21 @@ TALLAS = (
 )
 
 class TipoServicio(models.Model):
-    titulo = models.CharField('Titulo', max_length=35, unique=True)
+    nombre = models.CharField('Nombre', max_length=35, unique=True)
     descripcion = models.TextField('Descripcion')
     capacidad = models.PositiveIntegerField('Capacidad', help_text='Capacidad en numero de piezas por dia.')
-    
+
     def __unicode__(self):
-        return self.titulo
+        return self.nombre
 
 class Servicio(models.Model):
     tipo_servicio = models.ForeignKey(TipoServicio)
-    nombre = models.CharField('nombre', max_length=35, unique=True)
+    nombre = models.CharField('Nombre', max_length=35, unique=True)
     descripcion = models.TextField('Descripcion')
-    
+
     def __unicode__(self):
         return self.nombre
-    
+
     def get_precio_dolares(self, talla, tipo_cambio):
         try:
             listaprecio = self.listaprecios_set.get(servicio__id=self.id, talla=talla)
@@ -59,11 +61,48 @@ class ListaPrecios(models.Model):
     def _unicode__(self):
         return '%s %s' % (self.servicio.nombre, self.tamano)
 
-#class OrdenPedido(models.Model):
-    #cliente = models.ForeignKey(Cliente)
-    #servicios = models.ManyToManyField(trough=Cronograma)
-    #fecha_registro = models.DateTimeField('Fecha de Registro',auto_now=True, editable=False)
-    #cantidad = models.PositiveIntegerField('Cantidad de prendas')
+class Orden(models.Model):
+    cliente = models.ForeignKey(Cliente)
+    cantidad = models.PositiveIntegerField('Cantidad de prendas')
+    talla = models.IntegerField('Tallas de la Prenda',choices=TALLAS)
+    fecha_entrega = models.DateTimeField('Fecha de Entrega', help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
+    fecha_registro = models.DateTimeField('Fecha de Registro',auto_now=True, editable=False)
     
-#class Cronograma(models.Model):
-    #pass
+    def __unicode__(self):
+        return 'Codigo de orden: %s' % self.pk
+    
+    def get_detalle(self):
+        return self.detalleorden_set.all()
+    
+    def get_lista_servicios(self):
+        servicios = []
+        for detalle in self.detalleorden_set.all():
+            servicios.append(detalle.servicio)
+        return servicios
+    
+class DetalleOrden(models.Model):
+    PRIORIDAD = (
+        (4,'Muy Alta Prioridad'),
+        (3,'Alta Prioridad'),
+        (2,'Prioridad Normal'),
+        (1,'Prioridad Baja'),
+        (0,'Sin Prioridad'),
+    )
+    orden = models.ForeignKey(Orden)
+    servicio = models.ForeignKey(Servicio)
+    prioridad = models.PositiveIntegerField('Pioridad para ejecutar el servicio', default=2)
+    fecha_ejecucion = models.DateField('Fecha Ejecucion',help_text='La fecha que se ejecutara el servicio en la empresa')
+    terminado = models.BooleanField('Servicio Terminado', default = False)
+
+    objects = models.Manager()
+    noterminados = DetallesDeOrdenActivas()
+    
+    def verificar_espacio(self):
+        self.noterminados.por_tipo_fecha_ejecucion(tipo_servicio=self.servicio.tipo_servicio, fecha_ejecucion=self.fecha_ejecucion)
+    
+    def save(self, *args, **kwargs):
+        
+        super(DetalleOrden, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return 'Codigo de Orden %sy servicio %s' % (self.orden.pk, self.servicio.pk)
