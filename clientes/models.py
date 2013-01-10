@@ -10,6 +10,7 @@ class Cliente(models.Model):
             ('UNI', 'UNIPERSONAL'),
             ('SA', 'SOCIEDAD ANONIMA'),
             ('SC', 'SOCIEDAD COMANDITA'),
+            ('SRL', 'SOCIEDAD DE RESPONSABILIDAD LIMITADA'),
     )
     CIUDAD = (
         ('BENI','BENI'),
@@ -24,24 +25,24 @@ class Cliente(models.Model):
     )
     ci = models.CharField('Documento Identidad', max_length=15, unique=True,
                            help_text = 'Su numero de documento lo usara para ingresar al sistema.')
-    password = models.CharField('Contrasena', max_length=128)
-    nombres = models.CharField('Nombres', max_length=40, blank=True)
-    apellidos = models.CharField('Apellidos', max_length=50, blank=True)
-    email = models.EmailField('Correo Electronico', blank=True)
-    telefono = models.IntegerField('Telefono Fijo', null=False, blank=False)
-    celular = models.IntegerField('No Telefono Celular', null=False, blank=False)
-    direccion = models.CharField('Direccion', max_length=150, blank=False)
-    ciudad = models.CharField('Ciudad', max_length=15, choices=CIUDAD, blank=False)
-    nombre_empresa = models.CharField('Nombre Empresa', max_length=100, blank=False,
-                                      help_text='Si no tiene nombre coloque N/A por favor.')
-    tipo_empresa = models.CharField('Tipo de Empresa', max_length=3, choices=TIPO_EMPRESA, blank=False)
-    numero_empleados = models.IntegerField('Numero de Empleados')
-    productos = models.CharField ('Productos Fabricados', max_length=100)
+    password = models.CharField('Contrasena', max_length=250)
+    nombres = models.CharField('Nombres', max_length=50)
+    apellidos = models.CharField('Apellidos', max_length=50)
+    email = models.EmailField('Correo Electronico', blank=True, null=True)
+    telefono = models.IntegerField('Numero Telefono Fijo', null=True, blank=True)
+    celular = models.IntegerField('Numero Telefono Celular')
+    direccion = models.CharField('Direccion', max_length=150)
+    ciudad = models.CharField('Ciudad', max_length=15, choices=CIUDAD)
+    nombre_empresa = models.CharField('Nombre Empresa', max_length=100, default='N/A',
+                                      help_text='Si no tiene nombre deje en blanco la casilla.')
+    tipo_empresa = models.CharField('Tipo de Empresa', max_length=3, choices=TIPO_EMPRESA)
+    numero_empleados = models.IntegerField('Numero de Empleados', null=True)
+    productos = models.CharField ('Productos Fabricados', max_length=100, blank=True, null=True)
     produccion = models.IntegerField('Produccion Mensual', blank=True, null=True,
                                      help_text = 'Estimado de prendas al mes que produce.')
-    servicio_requerido = models.CharField('Servicios Requeridos', max_length=100, blank=False)
-    servicio_preferencia = models.CharField('Servicios Preferidos', max_length=25, blank=False)
-    date_joined = models.DateTimeField('Fecha Registro Cuenta', default=timezone.now)
+    servicio_requerido = models.CharField('Servicios Requeridos', max_length=100, blank=False, null=True)
+    servicio_preferencia = models.CharField('Servicios Preferidos', max_length=25, blank=False, null=True)
+    date_joined = models.DateTimeField('Fecha Registro Cuenta', auto_now_add=True)
     is_active = models.BooleanField('Cuenta activa', default=False, help_text='Solo las cuentas activas tiene acceso a la seccion de clientes.')
     
     objects = ClienteManager()
@@ -51,7 +52,7 @@ class Cliente(models.Model):
         verbose_name_plural = 'Cuentas de Clientes'
         
     def __unicode__(self):
-        return '%s %s con ci: %s' % (self.nombres, self.apellidos, self.ci)
+        return '%s con ci: %s' % (self.get_full_name(), self.ci)
 
     def set_password(self, contrasena):
         self.password = make_password(contrasena)
@@ -72,8 +73,8 @@ class Cliente(models.Model):
     def get_short_name(self):
         return self.ci
     
-    def enviar_email(self, titulo, mensaje, de_email=None):
-        send_email(titulo, mensaje, de_email)
+#    def enviar_email(self, titulo, mensaje, de_email=None):
+#        send_email(titulo, mensaje, de_email)
 
 
 
