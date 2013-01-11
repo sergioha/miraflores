@@ -97,6 +97,9 @@ class DetalleOrden(models.Model):
     objects = models.Manager()
     noterminados = DetallesDeOrdenActivas()
     
+    def cantidad(self):
+        return self.orden.cantidad
+    
     def verificar_espacio(self):
         self.noterminados.por_tipo_fecha_ejecucion(tipo_servicio=self.servicio.tipo_servicio, fecha_ejecucion=self.fecha_ejecucion)
     
@@ -106,3 +109,24 @@ class DetalleOrden(models.Model):
 
     def __unicode__(self):
         return 'Codigo de Orden %sy servicio %s' % (self.orden.pk, self.servicio.pk)
+
+class Cronograma(models.Model):
+    cliente = models.ForeignKey(Cliente)
+    ci = models.CharField('Documento Identidad', max_length=15)
+    nombres = nombres = models.CharField('Nombres', max_length=50)
+    orden = models.ForeignKey(Orden)
+    cantidad = models.PositiveIntegerField('Cantidad de prendas')
+    talla = models.IntegerField('Tallas de la Prenda',choices=TALLAS)
+    tipo_servicio = models.ForeignKey(TipoServicio)
+    nombre_tiposervicio = models.CharField('Nombre', max_length=35)
+    servicio = models.ForeignKey(Servicio)
+    nombre_servicio = models.CharField('Nombre', max_length=35)
+    fecha_ejecucion = models.DateField('Fecha Ejecucion',help_text='La fecha que se ejecutara el servicio en la empresa')
+    terminado = models.BooleanField('Servicio Terminado', default = False)
+    
+    def __unicode__(self):
+        return 'orden:%s servicio:%s fecha_ejecucion:%s' % (self.orden, self.nombre_servicio, self.fecha_ejecucion)
+    
+    class Meta:
+        db_table = 'servicios_cronograma'
+        managed = False

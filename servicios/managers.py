@@ -5,12 +5,18 @@ class DetallesDeOrdenActivas(models.Manager):
     def get_query_set(self):
         return super(DetallesDeOrdenActivas, self).get_query_set().filter(terminado=False)
 
-    def por_tipo_fecha_ejecucion(self, tipo_servicio = None, fecha_ejecucion=None):
+    def por_tipo_fecha_ejecucion(self, tipo_servicio=None, fecha_ejecucion=None):
         return self.filter(servicio__tipo_servicio=tipo_servicio, fecha_ejecucion=fecha_ejecucion)
     
     def por_fecha_ejecucion(self, fecha=None):
         return self.filter(fecha_ejecucion=fecha)
     
+    def espacio_ocupado(self, tipo_servicio=None, fecha_ejecucion=None):
+        detalles = self.filter(servicio__tipo_servicio=tipo_servicio, fecha_ejecucion=fecha_ejecucion)
+        total = 0
+        for d in detalles:
+            total += d.cantidad()
+        return total
     #def get_capacidad(self, fecha_ejecucion, tipo_servicio):
         #self.filter()
         #from django.db import connection, transaction
