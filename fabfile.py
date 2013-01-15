@@ -1,3 +1,4 @@
+import sys
 from fabric.api import settings, env, require, local, cd, lcd, hosts, sudo, run
 from fabric.contrib import django
 

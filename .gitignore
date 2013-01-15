@@ -5,5 +5,3 @@
 local_settings.py
 *wsgi*
 fabsettings.py
-media
-static
