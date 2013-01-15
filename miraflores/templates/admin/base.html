@@ -11,12 +11,9 @@
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 </head>
 {% load i18n %}
-
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
-
 <!-- Container -->
 <div id="container">
-
     {% if not is_popup %}
     <!-- Header -->
     <div id="header">
@@ -47,7 +44,6 @@
     </div>
     {% endblock %}
     {% endif %}
-
     {% block messages %}
         {% if messages %}
         <ul class="messagelist">{% for message in messages %}
@@ -55,7 +51,6 @@
         {% endfor %}</ul>
         {% endif %}
     {% endblock messages %}
-
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
@@ -68,10 +63,8 @@
         <br class="clear" />
     </div>
     <!-- END Content -->
-
     {% block footer %}<div id="footer"></div>{% endblock %}
 </div>
 <!-- END Container -->
-
 </body>
 </html>
