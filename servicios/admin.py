@@ -2,14 +2,49 @@ from django.contrib import admin
 from servicios.models import *
 
 class TipoServicioAdmin(admin.ModelAdmin):
-    pass
+    fields = ('nombre', 'capacidad', 'descripcion',)
+    list_display = ('nombre', 'capacidad',)
 
 class ServicioAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('nombre','tipo_servicio',)
+    list_filter = ('tipo_servicio',)
+    search_fields = ('nombre',)
 
+class ListaPreciosAdmin(admin.ModelAdmin):
+    list_display = ('servicio','talla', 'precio_bolivianos', 'precio_dolares',)
+    list_filter = ('servicio',)
+    search_fields = ('servicio',)
+    list_editable = ('precio_bolivianos', 'precio_dolares',)
+
+class OrdenAdmin(admin.ModelAdmin):
+    list_display = ('cliente', 'cantidad', 'talla', 'fecha_registro', 'fecha_entrega',)
+    list_filter = ('cliente', 'fecha_registro', 'fecha_entrega',)
+    search_fields = ('cliente',)
+
+class DetalleOrdenAdmin(admin.ModelAdmin):
+    list_display = ('orden', 'servicio', 'fecha_ejecucion', 'prioridad', 'terminado',)
+    list_filter = ('fecha_ejecucion', 'orden', 'terminado',)
+    search_fields = ('servicio',)
+    list_editable = ('prioridad',)
+
+class CronogramaAdmin(admin.ModelAdmin):
+    fields = ('cliente', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
+    list_display = ('cliente', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
+    list_displa_links = ('cliente', 'orden', 'servicio',)
+    list_filter = ('fecha_ejecucion', 'cliente', 'tipo_servicio', 'servicio', 'terminado',)
+    readonly_fields = ('cliente', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
+    actions_on_top = False
+    actions_on_bottom = False
+    actions_selection_counter = False
+    save_on_top = False
+    change_form_template = 'admin/cronograma_form.html'
+    
+    def has_add_permission(self, request):
+        return False
+    
 admin.site.register(TipoServicio, TipoServicioAdmin)
 admin.site.register(Servicio, ServicioAdmin)
-admin.site.register(ListaPrecios)
-admin.site.register(Orden)
-admin.site.register(DetalleOrden)
-admin.site.register(Cronograma)
+admin.site.register(ListaPrecios, ListaPreciosAdmin)
+admin.site.register(Orden, OrdenAdmin)
+admin.site.register(DetalleOrden, DetalleOrdenAdmin)
+admin.site.register(Cronograma, CronogramaAdmin)

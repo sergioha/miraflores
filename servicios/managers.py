@@ -26,4 +26,13 @@ class DetallesDeOrdenActivas(models.Manager):
         #cursor.execute("select * from capacidad_en_fecha(%s, %s)",[datetime.date(2013,10,1), tipo_servicio.pk])
         #row = cursor.fetchone()
         #return row
-        #self.aggregate()    
+        #self.aggregate()
+
+class CronogramaManager(models.Manager):
+    
+    def capacidad_en_fecha(self, fecha=None):
+        self.filter(fecha_ejecucion=fecha).anotate(Sum('cantidad'))
+
+    #Todo: replace date for date now
+    def fechas_disponibles(self, capacidad):
+        return self.exclude(fecha_ejecucion__gt=datetime.date(2013, 1, 3))
