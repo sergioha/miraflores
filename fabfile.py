@@ -62,3 +62,8 @@ def server_migrate():
 def configure_server():
     with cd(env.project_dir):
         run(". ../env/bin/activate")
+
+def deploy_static():
+    with cd(env.project_dir_env):
+        run("git pull")
+        run(". ../env/bin/activate && . apache2/bin/restart")
