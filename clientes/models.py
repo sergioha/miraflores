@@ -59,8 +59,21 @@ class Cliente(models.Model):
     def get_nombre_completo(self):
         return self.user.get_full_name()
     
-    def get_short_name(self):
+    @property
+    def ci(self):
         return self.user.username
+
+    @property
+    def nombres(self):
+        return self.user.first_name
+
+    @property
+    def apellidos(self):
+        return self.user.last_name
+
+    @property
+    def email(self):
+        return self.user.email
 
 
 
