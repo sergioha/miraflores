@@ -1,5 +1,6 @@
 from django.db import models
 from django.db import DatabaseError
+from django.db.models import Sum
 from django.core.exceptions import ValidationError
 
 from clientes.models import Cliente
@@ -75,8 +76,9 @@ class Orden(models.Model):
     cliente = models.ForeignKey(Cliente)
     cantidad = models.PositiveIntegerField('Cantidad de prendas')
     talla = models.IntegerField('Tallas de la Prenda',choices=TALLAS)
-    fecha_entrega = models.DateTimeField('Fecha de Entrega', help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
+    fecha_entrega = models.DateField('Fecha de Entrega', help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
     fecha_registro = models.DateTimeField('Fecha de Registro',auto_now=True, editable=False)
+    observaciones = models.TextField(verbose_name='Observaciones:', max_length=250, blank=True, null=True)
     
     class Meta:
         verbose_name = 'Orden'
@@ -105,7 +107,7 @@ class DetalleOrden(models.Model):
     )
     orden = models.ForeignKey(Orden)
     servicio = models.ForeignKey(Servicio)
-    prioridad = models.PositiveIntegerField('Pioridad para ejecutar el servicio', default=2)
+    prioridad = models.PositiveIntegerField('Pioridad para ejecutar el servicio', choices=PRIORIDAD, default=2)
     fecha_ejecucion = models.DateField('Fecha Ejecucion',help_text='La fecha que se ejecutara el servicio en la empresa')
     terminado = models.BooleanField('Servicio Terminado', default = False)
 
@@ -121,14 +123,24 @@ class DetalleOrden(models.Model):
         return self.orden.cantidad
     
     def verificar_espacio(self):
-        self.noterminados.por_tipo_fecha_ejecucion(tipo_servicio=self.servicio.tipo_servicio, fecha_ejecucion=self.fecha_ejecucion)
-    
+        self.noterminados.por_tipo_fecha_ejecucion(tipo_servicio=self.servicio.tipo_servicio, fecha_ejecucion=self.fecha_ejecucion)        
+
     def save(self, *args, **kwargs):
-        
+        self.fecha_ejecucion = detalle_pre_save(self)
+        #kwargs['fecha_ejecucion'] = detalle_pre_save(self, created=created, **kwargs)
         super(DetalleOrden, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return 'Orden %s servicio %s' % (self.orden.pk, self.servicio.pk)
+
+from django.db.models.signals import pre_save
+
+def detalle_pre_save(instance):
+    if not instance.pk:
+        disponible = Disponibilidad.objects.filter(disponible__gte=instance.orden.cantidad, fecha_ejecucion__gte=instance.fecha_ejecucion)[0]
+        return disponible.fecha_ejecucion
+
+#pre_save.connect(detalle_pre_save, sender=DetalleOrden, weak=True)
 
 class Cronograma(models.Model):
     cliente = models.ForeignKey(Cliente)
@@ -153,3 +165,19 @@ class Cronograma(models.Model):
         db_table = 'servicios_cronograma'
         managed = False
         ordering = ['fecha_ejecucion','tipo_servicio']
+        
+
+class Disponibilidad(models.Model):
+    tipo_servicio = models.ForeignKey(TipoServicio, primary_key=True)
+    capacidad = models.IntegerField('Capacidad')
+    ocupado = models.IntegerField('Ocupado')
+    disponible = models.IntegerField('Disponible')
+    fecha_ejecucion = models.DateField('Fecha Ejecucion')
+    
+    class Meta:
+        verbose_name = 'Fechas Disponibles'
+        verbose_name_plural = 'Fechas Disponibles'
+        db_table = 'servicios_disponibilidad'
+        managed = False
+        ordering = ['fecha_ejecucion','tipo_servicio']
+    

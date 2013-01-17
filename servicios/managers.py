@@ -36,3 +36,8 @@ class CronogramaManager(models.Manager):
     #Todo: replace date for date now
     def fechas_disponibles(self, capacidad):
         return self.exclude(fecha_ejecucion__gt=datetime.date(2013, 1, 3))
+
+class DisponibilidadManager(models.Manager):
+    
+    def fecha_disponible(self,fecha=None):
+        pass

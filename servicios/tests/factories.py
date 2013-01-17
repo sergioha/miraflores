@@ -71,5 +71,3 @@ class DetalleOrdenFactory(factory.Factory):
         kwargs['servicio'] = servicio
         detalleorden = super(DetalleOrdenFactory, cls)._prepare(create, **kwargs)
         return detalleorden
-
-    

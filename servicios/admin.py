@@ -41,6 +41,16 @@ class CronogramaAdmin(admin.ModelAdmin):
     
     def has_add_permission(self, request):
         return False
+
+class DisponibilidadAdmin(admin.ModelAdmin):
+    list_display = ('tipo_servicio', 'capacidad', 'ocupado', 'disponible', 'fecha_ejecucion')
+    actions_on_top = False
+    actions_on_bottom = False
+    actions_selection_counter = False
+    save_on_top = False
+
+    def has_add_permission(self, request):
+        return False
     
 admin.site.register(TipoServicio, TipoServicioAdmin)
 admin.site.register(Servicio, ServicioAdmin)
@@ -48,3 +58,4 @@ admin.site.register(ListaPrecios, ListaPreciosAdmin)
 admin.site.register(Orden, OrdenAdmin)
 admin.site.register(DetalleOrden, DetalleOrdenAdmin)
 admin.site.register(Cronograma, CronogramaAdmin)
+admin.site.register(Disponibilidad, DisponibilidadAdmin)
