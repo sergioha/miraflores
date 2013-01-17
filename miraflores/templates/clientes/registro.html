@@ -1,0 +1,38 @@
+{% extends "clientes/base_clientes.html" %}
+{% block content %}
+<div id="tabs">
+   	<ul><li class="active">Registrarse</li></ul>
+</div>
+<div id="tabs-content">
+   	<h2>Obteniendo una cuenta de Cliente</h2>
+    <p>Con una cuenta de cliente usted podra ingresar a la zona de clientes.</p>
+	<div id="white-box">
+        <h3>Registro Nuevo Cliente</h3>
+        <form action="." method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <p>
+            <span id="form-buttons" class="clearfix">
+            <input id="cancel-button" type="button" value="Enviar" />
+            </span>
+        </p>
+        </form>
+    </div>
+</div>
+{% endblock %}
+encima de esta seccion para usuarios registrados
+<div id="shoutout-section">
+            	<p>Realize su primera orden y verificara la calidad de nuestros servicios!</p>
+            </div>
+            <div id="intro-section">
+            	<div id="user-info">
+                  <em class="hello-user">Bienvenido <span>Felix Jimenez!</span></em>
+                    <p>Su ultima orden fue registrada el <span>27 de Julio del 2011</span></p>
+                </div>
+                <div id="add-orden">
+                	<a href="#">Registrar Orden de Pedido +</a>
+                </div>
+                <div id="ordenes">
+                	<a href="#">Verifica el estado de tus ordenes</a>
+                </div>
+                <div class="clear"></div>
+            </div>

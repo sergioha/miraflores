@@ -1,0 +1,134 @@
+
+/* forms style */
+				form p label span{
+					display:block;
+					clear:both;
+					float:left;
+					width:50px;
+					text-align:left;
+					padding-top:4px;
+					/*padding-top:6px;*/
+				}
+				
+				form p input{
+					width:255px;
+					padding:4px 5px;
+					font-family:inherit;
+					background-color:#f7f7f7;
+					border:1px solid #dbdbdb;
+					color:inherit;
+				}
+				form p label input{
+					width:20px;
+					background-color:#f7f7f7;
+					border:1px solid #dbdbdb;
+				}
+				form p select{
+					width:auto;
+					background-color:#f7f7f7;
+					border:1px solid #dbdbdb;
+					color:inherit;
+					padding:3px 5px;
+				}
+				form p select option{
+					background-color:#f7f7f7;
+					color:inherit;
+
+				}
+				form li textarea{
+					width:100px;
+					height:150px;
+					padding:5px;
+					margin-top:5px;
+					font-family:inherit;
+					font-size:inherit;
+				}
+				
+				/*form li span.help-text{
+					display:block;
+					width:200px;
+					margin-left:220px;
+					font-style:italic;
+				}*/
+				/*Skills section*/
+				/*div#central-panel li ul.checkbox-list{
+					margin-top:5px;
+					width:280px;
+					float:left;
+				}
+				div#central-panel li ul.checkbox-list li{
+					display:block;
+					width:140px;
+					float:left;
+					clear:none;
+
+				}
+				div#central-panel li ul.checkbox-list input{
+					width:auto;
+					padding:0;
+					margin-right:5px;
+					margin-top:4px;
+					_margin-top:0;
+				}
+				
+				div#central-panel li ul.checkbox-list label{
+					display:block;
+					float:left;
+					text-align:left;
+					padding-top:0;
+					width:100px;
+					margin-right:0;
+				}*/
+				
+
+					div#central-panel ul.errorlist{
+						/*display:block;*/
+						width:180px;
+						padding:3px 10px 0px 10px;
+						margin-top:0.4em;
+						margin-bottom:0;
+						margin-left:220px;
+						border:1px solid #FBC2C4;
+						background:#FBE3E4;
+						color:#8a1f11;
+					}
+					div#central-panel ul.errorlist li{
+						margin:0;
+						padding:0;
+					}
+				/*style for the checkboxe's label*/	
+				
+/*general style for error, notice and success messages */			
+.error, .notice, .success {
+	padding:.74em;
+	margin-bottom:1em;
+	margin-top:1em;
+	border:2px solid #8faea8;
+}
+.error {
+	background:#FBE3E4;
+	color:#8a1f11;
+	border-color:#FBC2C4;
+}
+.notice {
+	background:#FFF6BF;
+	color:#514721;
+	border-color:#FFD324;
+}
+.success {
+	background:#E6EFC2;
+	color:#264409;
+	border-color:#C6D880;
+}
+.error a {
+	color:#8a1f11;
+}
+.notice a {
+	color:#514721;
+}
+.success a {
+	color:#264409;
+}
+
+
+

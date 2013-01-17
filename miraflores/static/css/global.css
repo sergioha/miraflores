@@ -1,0 +1,131 @@
+/* Reset tags */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+pre, a, abbr, acronym, address, code, del, dfn, em, strong, img, q, dl, dt, dd,
+ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, 
+tr, th, td {margin:0;padding:0;border:0;font-weight:normal;font-style:inherit;font-size:inherit;font-family:inherit;text-align: left;vertical-align:baseline;}
+body {line-height:1.3;font-size:100%;}
+table{border-collapse:separate;border-spacing:0;}
+caption, th, td {text-align:left;font-weight:normal;}
+table, td, th {vertical-align:middle;}
+blockquote:before, blockquote:after, q:before, q:after {content:"";}
+blockquote, q {quotes:"" "";}
+a img {border:none;}
+:focus {outline: 0;}
+html, body {
+    height: 100%;
+}
+/* End Reset tags */
+
+/* Typography */
+body {font-size:0.81em; /*Equivalent to 13px*/
+	  color:#515152;background:#ffffff url(../images/page_bg.png) repeat-x; font-family:Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6{color:#333399;}
+h1{font-size:1.46em; /*Equivalent to 19px*/line-height:1.3;margin-bottom:0.5em;}
+h2{font-size:1.38em;/*Equivalent to 18px*/line-height:1.3em;margin-bottom:0.75em;font-weight:bold;word-spacing:0.1em;letter-spacing:0;}
+h3{font-size:1.23em; /*Equivalent to 16px*/line-height:1; font-weight:bold;margin-bottom:1em;}
+h4{font-size:1em;/*Equivalent to 13px*/line-height:1;margin-bottom:1em; font-weight:bold;}
+h5{font-size:1em; /*Equivalent to 13px*/font-weight:bold;margin-bottom:1.5em;}
+h6{font-size:1em; /*Equivalent to 13px*/font-weight:bold;}
+p {margin:0 0 1.0em;}
+p img{float:left;margin:1.2em 1.2em 1.2em 0;padding:0;}
+p img.right {float:right;margin:1.2em 0 1.2em 1.2em;}
+a {color:#000066;text-decoration:none;}
+a.green-link{color:#99CC00;}
+a:focus, a:hover {color:#57508a;}
+blockquote{margin:1.3em 1em; font-style:italic;}
+strong{font-weight:bold;}
+em, dfn{font-style:italic;}
+dfn{font-weight:bold;}
+sup, sub{line-height:0;}
+abbr, acronym {border-bottom:1px dotted #57508a;}
+address {margin:0 0 1.3em;font-style:italic;}
+del {color:#515152;}
+pre, code {margin:1.3em 0;white-space:pre;}	
+pre, code, tt {font:1em/1.3 'andale mono', 'lucida console', monospace;}
+ul, ol {margin:0 1.3em 1.3em 1.3em;}
+ul { list-style:none; margin-left:1.9em;}
+ol {list-style-type:decimal;}
+ul li{ line-height:1.53em;}
+li ul, li ol {margin:0 1.3em;}
+dl {margin:0 0 1.3em 0;}
+dl dt {font-weight:bold;}
+dd {margin-left:1.3em;}
+table {margin-bottom:1.3em;width:100%;}
+th {font-weight:bold;background:#efefef;}
+th, td {padding:4px 10px 4px 5px;}
+tfoot {font-style:italic;}
+caption {background:none;}
+/* End Typography */
+/*General styles*/
+.small {font-size:.74em;margin-bottom:1.73em;line-height:1.38em;}
+.large {font-size:1.38em;line-height:1.3em;}
+.hidden {display:none;}
+.clear{clear:both;}
+.float-L{float:left;}
+.float-R{float:right;}
+.top {margin-top:0;padding-top:0;}
+.bottom {margin-bottom:0;padding-bottom:0;}
+/*Clearfix tecnique used to clear the float of an element which contains float elements*/
+.clearfix {display: inline-block;}/* This needs to be first because FF3 is now supporting this */
+.clearfix:after {content: " ";display: block;height: 0;clear: both;font-size: 0;visibility: hidden;}
+* html .clearfix {height: 1%;}/* Hides from IE-mac \*/
+.clearfix {display: block;}/* Hides from IE-mac \*/
+/*End General styles*/
+
+/****** General Style for Horizontal links*******/
+ul.horizontal-links{ padding:0;}
+ul.horizontal-links li{ float:left; border-right:1px solid #ec1d8d; padding:1px 10px 2px; line-height:0.7;}
+ul.horizontal-links li.last{ border:none; padding-right:0;}
+ul.horizontal-links li.first{ padding-left:0;}
+
+
+
+div#container{ width:924px; height:auto; background:url(../images/container_bg.png) no-repeat; margin:26px auto 0;}
+/************HEADER********************************************/
+div#header{ width:678px; height:68px; padding-right:18px}
+div#header h1#logo{margin-top:11px; margin-left:9px; float:left;}
+h1#logo a{ display:block; background:url(../images/runaroo_logo.png) no-repeat; width:231px; height:57px; text-indent:-9999px;}
+ul.top-links{ margin:48px 0 0; float:right;}
+
+/************CONTENT*******************************************/
+
+div#content{ width:auto; height:auto;}
+div#central-column{ width:920px; padding:16px 18px 18px;}
+/************CENTRAL COLUMN*************/
+
+/*-----Shout out section-----*/
+div#shoutout-section{ width:636px; padding:12px;}
+/*-----Intro section-----*/
+div#intro-section{ width:660px; position:relative; padding:0 0 18px;}
+div#user-info img{ float:left; border:3px solid #e1dede; width:120px; height:120px; margin-right:10px;}
+div#user-info em.hello-user{ color:#777777; font-style:normal; font-weight:bold; font-size:1.39em;}
+div#user-info span{ color:#7ba725; font-weight:inherit;}
+div#add-orden{ position:absolute; top:0px; right:0px;}
+div#ordenes{ position:absolute; top:21px; right:0px;}
+/*-----Main Menu-----*/
+div#main-menu{ width:660px; height:37px;}
+div#main-menu ul{width:660px; margin:0; padding:0;}
+div#main-menu li{ margin:0; padding:0; float:left; border-top:1px solid #dbdbdb; border-left:1px solid #dbdbdb; border-bottom:1px solid #dbdbdb;}
+div#main-menu li.last{border-right:1px solid #dbdbdb;}
+div#main-menu li a{ display:block; height:27px; text-align:center; color:#57508a; font-weight:bold;
+ 					background:url(../images/menu_bg.jpg) no-repeat left bottom; padding-top:8px;}
+div#main-menu li a:hover{ background-position:left top;}
+div#main-menu li a.inicio{ width:108px;}
+div#main-menu li a.prelavado{ width:109px;}
+div#main-menu li a.efectos{ width:109px;}
+div#main-menu li a.planchado{ width:109px;}
+div#main-menu li a.laempresa{ width:109px;}
+div#main-menu li a.contactanos{ width:109px;}
+/*to set the Active menu item*/
+body#updates-page div#main-menu li a.updates{ background:none;}
+body#community-page div#main-menu li a.community{ background:none;}
+body#workouts-page div#main-menu li a.workouts{ background:none;}
+div#main-content{ width:660px; height:auto; padding:25px 0 0;}
+
+/*-----Footer-----*/
+div#footer{ width:924px; margin:0 auto;}
+div#footer, .push { height:40px;}
+div#footer ul{ margin:0; padding:0; list-style:none; float:left;}
+div#footer ul li{ float:left; padding:1px 10px 2px; border-right:1px solid #ec1d8d; line-height:0.7;}
+div#footer ul li.last{ border:none;}
+div#footer li a:hover{text-decoration:underline;}

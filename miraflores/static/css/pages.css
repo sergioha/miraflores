@@ -1,0 +1,65 @@
+/************STYLE FOR SHOES & ESSENTIALS SECTION *************/
+
+/*-----Secondary Nav-----*/
+div#tabs{ width:565px; height:30px; margin:0 auto; padding-top:10px; }
+div#tabs ul{margin:0; padding:0;} 
+div#tabs li{margin:0; padding:0; float:left; border-top:1px solid #dbdbdb; border-left:1px solid #dbdbdb; background-color:#f3f2f2; }
+div#tabs li.last{border-right:1px solid #dbdbdb;}
+div#tabs li.active{border-bottom:none; height:31px; background-color:#ededed;}
+div#tabs li, div#tabs li a{display:block; height:23px; text-align:center; font-weight:bold; width:100px; padding-top:5px;}
+div#tabs li a:hover{}
+/*-----Secondary Nav Content-----*/
+div#tabs-content{width:543px; border:1px solid #dbdbdb; padding:15px 10px 10px; margin:0 auto; background-color:#ededed;}
+div#white-box{ width:auto; height:auto; padding:15px; border:1px solid #dbdbdb; position:relative; background-color:#ffffff;}
+
+/*--Start Goal and View Gallery links--*/							
+div#bottom-links ul{ margin:0; padding:0; margin-top:20px;}
+div#bottom-links ul li.start-goal{ float:left;}
+div#bottom-links ul li.view-gallery{ float:right;}
+
+
+/************ADD SHOE PAGE*************/
+
+/*Review it and List yours buttons on Add shoe page*/
+div#white-box div#shoe-menu-options{ width:234px; margin:0 auto; padding:15px 0;}
+div#white-box div#shoe-menu-options ul{ margin:0; padding:0;}
+div#white-box div#shoe-menu-options li{ margin:0; padding:0; float:left;}
+div#white-box div#shoe-menu-options li a#reviewit{ display:block; background:url(../images/button_reviewit.png) no-repeat; 
+							width:97px; height:139px; text-indent:-9999px; margin-right:40px;}
+div#white-box div#shoe-menu-options li a#listyours{ display:block; background:url(../images/button_listyours.png) no-repeat; 
+							width:97px; height:139px; text-indent:-9999px;}
+
+div#white-box h3{ font-size:1em; line-height:1.5; color:#57508a;}
+/*---Add shoe form---*/
+form#add-shoe{ display:block; width:auto; padding:0 95px;}
+form#add-shoe span#form-buttons{ display:block; width:auto; height:auto; margin-top:25px;}
+form input#cancel-button, form input#edit-button{ background:none; border:none; background:url(../images/back_arrow.gif) no-repeat 0% 50%; 
+									color:#ec1d8d; font-weight:bold; cursor:pointer; padding:0 10px; float:left; width:auto;}
+form input#next-button, form input#submit-button, form input#done-button{ background:none; border:none; background:url(../images/next_arrow.gif) no-repeat 100% 50%; color:#ec1d8d; font-weight:bold; cursor:pointer; padding:0 10px; float:right; width:auto;}
+/*----Confirmation message-----*/									
+div#confirmation-msg{ width:auto; height:32px; background:url(../images/confirmation_bg.png) no-repeat; margin-bottom:10px;}
+div#confirmation-msg div{ width:auto; height:32px; background:url(../images/confirmation_bgcorner.png) no-repeat right top;}
+div#confirmation-msg p{ margin-bottom:0; padding-top:8px; padding-right:15px; padding-left:40px;} 
+/*----Review shoes-----*/
+
+div#add-review-links{ margin-bottom:15px; height:15px;}
+div#add-review-links ul{ margin:0;}
+div#add-review-links ul a{ font-size:0.923em;}
+div#add-review-links ul li{ padding:2px 5px;}
+
+div#review-list{ width:auto; height:100%;}
+div#review-list ul{ margin:0; padding:0;} 
+div#review-list li{ }
+div#review-list dl{ display:block; margin:0; padding:0;}
+div#review-list dl dt{ color:#7ba725; float:left; width:205px;}
+div#review-list dl dd{ margin:0; float:left;}
+div#review-list dl dd.options{ width:48px;}
+div#review-list dl dd.miles{ width:75px;}
+div#review-list dl dd.rates{ width:183px;}
+div#review-list dl dd.rates div.shoes-rating{}
+div#review-list dl dd.rates div.shoes-rating a{}
+
+
+dd.options a{ display:block; background:url(../images/options.gif) no-repeat; width:22px; height:19px; text-indent:-9999px;}
+dd.rates li span{ display:block; font-size:.74em;margin:0 0 20px;line-height:1.38em;}
+dd.rates li a.your-review{ display:block;font-size:.74em; float:right;}
