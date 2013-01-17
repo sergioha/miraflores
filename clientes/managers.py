@@ -1,15 +1,20 @@
 from django.db import models
 from django.utils.http import urlquote
 from django.utils import timezone
-from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.models import User
 
 class ClienteManager(models.Manager):
-    def create_user(self, ci, password, **extra_fields):
-        now = timezone.now()
-    #Crea una cuenta de cliente con su ci, nombres, apellidos, password y telefono. """
-        if not ci:
-            raise ValueError('El usuario debe registrar su documento de identidad')
-        user = self.model(ci=ci, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
+    
+    def crear_cliente(self, **kwargs):
+        user = User.objects.create_user(username=kwargs['ci'], email=kwargs['email'], password=kwargs['password1'])
+        user.last_name = kwargs['nombres']
+        user.first_name = kwargs['apellidos']
+        user.is_active = False
+        user.save()
+        self.create(user=user, telefono=kwargs['telefono'], celular=kwargs['celular'],
+                    direccion=kwargs['direccion'], ciudad=kwargs['ciudad'],
+                    nombre_empresa=kwargs['nombre_empresa'], tipo_empresa=kwargs['tipo_empresa'],
+                    numero_empleados=kwargs['numero_empleados'], productos=kwargs['productos'],
+                    produccion=kwargs['produccion'], servicio_requerido=kwargs['servicio_requerido'],
+                    servicio_preferencia=kwargs['servicio_preferencia'])
         return user
