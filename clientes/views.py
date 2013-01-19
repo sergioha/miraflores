@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 
 from clientes.forms import ClienteRegistroForm, LoginForm
+from clientes.models import Cliente, User
 
 def registro_nuevo_cliente(request, success_url=None,
                            template_name='clientes/registro.html',
@@ -25,6 +26,8 @@ def registro_nuevo_cliente(request, success_url=None,
                               context_instance=context)
 
 def cliente_login(request):
+    if 'user_id' in request.session:
+        request.session.flush()
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -33,3 +36,23 @@ def cliente_login(request):
     else:
         form = LoginForm()
     return render(request,'clientes/login.html',{'form':form})
+
+def cliente_logout(request):
+    if 'user_id' in request.session:
+        request.session.flush()
+    return redirect('/')
+
+def cliente_inicio(request, extra_context=None):
+    if 'user_id' not in request.session:
+        return redirect(reverse('ingresar'))
+    user = User.objects.get(username=request.session['user_id'])
+    cliente = Cliente.objects.get(user=user)
+    if extra_context is None:
+        extra_context = {'titulo':'Registro Nuevo Cliente'}
+    context = RequestContext(request)
+    for key, value in extra_context.items():
+        context[key] = callable(value) and value() or value
+    return render_to_response('clientes/inicio.html',
+                              { 'mensaje': 'Bienvenido!!',
+                                'cliente': cliente},
+                              context_instance=context)

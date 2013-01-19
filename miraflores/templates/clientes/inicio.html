@@ -1,0 +1,30 @@
+{% extends "clientes/base_clientes.html" %}
+{% block content %}
+<div id="shoutout-section">
+    <p>Realize su primera orden y verificara la calidad de nuestros servicios!</p>
+</div>
+<div id="intro-section">
+    <div id="user-info">
+        <em class="hello-user">Bienvenido <span>{{ cliente.nombre_completo|title }}!</span></em>
+        <p>Su ultima orden fue registrada el <span>27 de Julio del 2011</span></p>
+    </div>
+    <div id="add-orden">
+        <a href="#">Registrar Orden de Pedido +</a>
+    </div>
+    <div id="ordenes">
+        <a href="#">Verifica el estado de tus ordenes</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<div id="tabs">
+   	<ul><li class="active">Inicio</li></ul>
+</div>
+<div id="tabs-content">
+   	<h2>Bienvenido a la zona de clientes!!</h2>
+    <p>{{ usuario.nombre }}</p>
+	<div id="white-box">
+        <h3>Ingresar a la Zona de Clientes</h3>
+        
+    </div>
+</div>
+{% endblock %}

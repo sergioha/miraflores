@@ -58,7 +58,11 @@ class Cliente(models.Model):
 
     def get_nombre_completo(self):
         return self.user.get_full_name()
-    
+
+    @property
+    def nombre_completo(self):
+        return self.user.get_full_name()
+
     @property
     def ci(self):
         return self.user.username

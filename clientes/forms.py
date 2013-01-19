@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user
 
 from clientes.models import Cliente
 
@@ -36,8 +37,8 @@ class ClienteRegistroForm(forms.ModelForm):
 
 class LoginForm(forms.Form):
     
-    username = forms.CharField(label="CI:", max_length=30)
-    password = forms.CharField(label="Contrasena", widget=forms.PasswordInput)
+    username = forms.CharField(label="Documento:", max_length=15, min_length=5)
+    password = forms.CharField(label="Contrasena", max_length=15, min_length=5, widget=forms.PasswordInput)
     
     error_messages = {
         'invalid_login': "Por favor ingrese correctamente su documento y contrasena.",
@@ -45,16 +46,26 @@ class LoginForm(forms.Form):
     }
 
     def clean(self):
-        username = self.cleaned_data['username']
-        password = self.cleaned_data['password']
+        cleaned_data = super(LoginForm, self).clean()
+        if 'username' not in cleaned_data or 'password' not in cleaned_data:
+            raise forms.ValidationError(message='')
+        username = cleaned_data['username']
+        password = cleaned_data['password']
         message = self.error_messages
 
         if username and password:
-            self.user_cache = User.objects.get(username=username)
+            try:
+                self.user_cache = User.objects.get(username__iexact=username)
+            except User.DoesNotExist:
+                raise forms.ValidationError(message='La informacion ingresada no es valida.')
             if self.user_cache is None:
-                raise forms.ValidationError(message['invalid_login'])
+                raise forms.ValidationError(message=message['invalid_login'])
             if not self.user_cache.check_password(password):
-                raise forms.ValidationError(message['invalid_login'])
+                raise forms.ValidationError(message=message['invalid_login'])
             if not self.user_cache.is_active:
-                raise forms.ValidationError(message['inactive'])
+                raise forms.ValidationError(message=message['inactive'])
+            try:
+                self.user_cache.cliente
+            except Cliente.DoesNotExist:
+                raise forms.ValidationError(message='Asegurese de tener una cuenta de cliente.')
         return self.cleaned_data
