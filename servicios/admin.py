@@ -28,11 +28,11 @@ class DetalleOrdenAdmin(admin.ModelAdmin):
     list_editable = ('prioridad',)
 
 class CronogramaAdmin(admin.ModelAdmin):
-    fields = ('cliente', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
-    list_display = ('cliente', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
-    list_displa_links = ('cliente', 'orden', 'servicio',)
-    list_filter = ('fecha_ejecucion', 'cliente', 'tipo_servicio', 'servicio', 'terminado',)
-    readonly_fields = ('cliente', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
+    fields = ('user', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
+    list_display = ('user', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
+    list_displa_links = ('user', 'orden', 'servicio',)
+    list_filter = ('fecha_ejecucion', 'user', 'tipo_servicio', 'servicio', 'terminado',)
+    readonly_fields = ('user', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
     actions_on_top = False
     actions_on_bottom = False
     actions_selection_counter = False

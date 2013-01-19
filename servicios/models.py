@@ -137,15 +137,15 @@ from django.db.models.signals import pre_save
 
 def detalle_pre_save(instance):
     if not instance.pk:
-        disponible = Disponibilidad.objects.filter(disponible__gte=instance.orden.cantidad, fecha_ejecucion__gte=instance.fecha_ejecucion)[0]
-        return disponible.fecha_ejecucion
+        disponible = Disponibilidad.objects.filter(disponible__gte=instance.orden.cantidad, fecha_ejecucion__gte=instance.fecha_ejecucion)
+        if len(disponible):
+            return disponible[0].fecha_ejecucion
+        return instance.fecha_ejecucion
 
 #pre_save.connect(detalle_pre_save, sender=DetalleOrden, weak=True)
 
 class Cronograma(models.Model):
-    cliente = models.ForeignKey(Cliente)
-    ci = models.CharField('Documento Identidad', max_length=15)
-    nombres = nombres = models.CharField('Nombres', max_length=50)
+    user = models.ForeignKey(Cliente)
     orden = models.ForeignKey(Orden)
     cantidad = models.PositiveIntegerField('Cantidad')
     talla = models.IntegerField('Talla',choices=TALLAS)
@@ -180,4 +180,3 @@ class Disponibilidad(models.Model):
         db_table = 'servicios_disponibilidad'
         managed = False
         ordering = ['fecha_ejecucion','tipo_servicio']
-    
