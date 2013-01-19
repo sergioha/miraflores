@@ -79,6 +79,9 @@ class Cliente(models.Model):
     def email(self):
         return self.user.email
 
+    @property
+    def ordenes(self):
+        return self.orden_set.all()
 
 
 
