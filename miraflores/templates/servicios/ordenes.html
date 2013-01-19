@@ -1,0 +1,8 @@
+{% if ordenes %}
+{% for orden in ordenes %}
+<li>{{ orden.fecha_entrega }}</li>
+{% endfor %}
+{% else %}
+<p>Lo siento usted no tiene ninguna orden registrada.</p>
+<p>Puede ingresar una orden ahora: <a href="#">Registrar Orden de Pedido +</a></p>
+{% endif %}
