@@ -1,15 +1,14 @@
 {% extends "clientes/base_clientes.html" %}
 {% block content %}
 <div id="tabs">
-   	<ul><li class="active">Registrarse</li></ul>
+   	<ul><li class="active">Registro</li></ul>
 </div>
 <div id="tabs-content">
-   	<h2>Obteniendo una cuenta de Cliente</h2>
-    <p>Con una cuenta de cliente usted podra ingresar a la zona de clientes.</p>
+   	<h2>Cuenta de Cliente Creada Satisfactoriamente!!</h2>
+    <p>Su cuenta fue creada, por favor ingrese a la zona de clientes usando su ci y password a continuacion para ingresar a la zona de clientes de la Lavanderia Miraflores.</p>
 	<div id="white-box">
-        <h3>Registro Nuevo Cliente</h3>
-        <form action="." method="post">{% csrf_token %}
-        {{ form.as_p }}
+        <h3>Ingresar a la Zona de Clientes</h3>
+        <form action="{% url login %}" method="post">{% csrf_token %}
         <p>
             <span id="form-buttons" class="clearfix">
             <input id="cancel-button" type="submit" value="Enviar" />
