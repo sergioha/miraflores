@@ -17,7 +17,7 @@ class ClienteRegistroForm(forms.ModelForm):
         try:
             usuario = User.objects.get(username__iexact=self.cleaned_data['ci'])
         except User.DoesNotExist:
-            return self.cleaned_data(self.ci)
+            return self.cleaned_data['ci']
         raise forms.ValidationError(message='El ci ya fue registrado anteriormente.')
 
     def clean_password2(self):
@@ -33,3 +33,28 @@ class ClienteRegistroForm(forms.ModelForm):
     class Meta:
         model = Cliente
         exclude = ('user',)
+
+class LoginForm(forms.Form):
+    
+    username = forms.CharField(label="CI:", max_length=30)
+    password = forms.CharField(label="Contrasena", widget=forms.PasswordInput)
+    
+    error_messages = {
+        'invalid_login': "Por favor ingrese correctamente su documento y contrasena.",
+        'inactive': "Su cuenta no esta activada, por favor contactese con nuestras oficinas.",
+    }
+
+    def clean(self):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        message = self.error_messages
+
+        if username and password:
+            self.user_cache = User.objects.get(username=username)
+            if self.user_cache is None:
+                raise forms.ValidationError(message['invalid_login'])
+            if not self.user_cache.check_password(password):
+                raise forms.ValidationError(message['invalid_login'])
+            if not self.user_cache.is_active:
+                raise forms.ValidationError(message['inactive'])
+        return self.cleaned_data

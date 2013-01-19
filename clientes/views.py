@@ -1,10 +1,9 @@
 from django.shortcuts import render_to_response, render, redirect
 from django.http import HttpResponseRedirect
-from django.contrib.admin.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 
-from clientes.forms import ClienteRegistroForm
+from clientes.forms import ClienteRegistroForm, LoginForm
 
 def registro_nuevo_cliente(request, success_url=None,
                            template_name='clientes/registro.html',
@@ -13,7 +12,7 @@ def registro_nuevo_cliente(request, success_url=None,
         form = ClienteRegistroForm(request.POST) 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(success_url or reverse('registro_exitoso'))
+            return HttpResponseRedirect(success_url or reverse('registro_completado'))
     else:
         form = ClienteRegistroForm()
     if extra_context is None:
@@ -27,9 +26,10 @@ def registro_nuevo_cliente(request, success_url=None,
 
 def cliente_login(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            redirect('/zonacliente/inicio/')
+            request.session['user_id'] = form.cleaned_data['username']
+            return redirect('/zonacliente/inicio/')
     else:
-        form = AuthenticationForm()
+        form = LoginForm()
     return render(request,'clientes/login.html',{'form':form})
