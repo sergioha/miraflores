@@ -13,10 +13,18 @@ TALLAS = (
     (3,'Grande')
 )
 
+PRIORIDAD_EJECUCION = (
+    (1, 'Primero en Ejecutar'),
+    (2, 'Segundo en Ejecutar'),
+    (3, 'Tercero en Ejecutar'),
+    (4, 'Cuarto en Ejecutar'),
+)
+
 class TipoServicio(models.Model):
     nombre = models.CharField('Nombre', max_length=35, unique=True)
     descripcion = models.TextField('Descripcion')
     capacidad = models.PositiveIntegerField('Capacidad', help_text='Capacidad en numero de piezas por dia.')
+    prioridad = models.IntegerField('Prioridad de ejecucion', choices = PRIORIDAD_EJECUCION)
 
     class Meta:
         verbose_name = 'Tipo de Servicios'

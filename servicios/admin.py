@@ -2,13 +2,15 @@ from django.contrib import admin
 from servicios.models import *
 
 class TipoServicioAdmin(admin.ModelAdmin):
-    fields = ('nombre', 'capacidad', 'descripcion',)
+    fields = ('nombre', 'capacidad', 'descripcion', 'prioridad',)
     list_display = ('nombre', 'capacidad',)
+    ordering = ['prioridad']
 
 class ServicioAdmin(admin.ModelAdmin):
     list_display = ('nombre','tipo_servicio',)
     list_filter = ('tipo_servicio',)
     search_fields = ('nombre',)
+    ordering = ['tipo_servicio']
 
 class ListaPreciosAdmin(admin.ModelAdmin):
     list_display = ('servicio','talla', 'precio_bolivianos', 'precio_dolares',)
