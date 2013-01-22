@@ -121,7 +121,8 @@ body#updates-page div#main-menu li a.updates{ background:none;}
 body#community-page div#main-menu li a.community{ background:none;}
 body#workouts-page div#main-menu li a.workouts{ background:none;}
 div#main-content{ width:660px; height:auto; padding:25px 0 0;}
-
+/*--------Messages----------*/
+.mensaje-exito { display: block; border: medium solid #57508a; padding: 7px; text-align: center; color: #57508a; font-weight: bold; }
 /*-----Footer-----*/
 div#footer{ width:924px; margin:0 auto;}
 div#footer, .push { height:40px;}
