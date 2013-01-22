@@ -33,6 +33,9 @@ class ClienteRegistroForm(forms.ModelForm):
 
     class Meta:
         model = Cliente
+        fields = ('ci', 'nombres', 'apellidos', 'email', 'password1', 'password2', 'telefono', 'celular',
+                  'direccion', 'celular', 'direccion', 'ciudad', 'nombre_empresa', 'tipo_empresa',
+                  'numero_empleados', 'productos', 'produccion', 'servicio_requerido', 'servicio_preferencia',)
         exclude = ('user',)
 
 class LoginForm(forms.Form):
@@ -68,4 +71,7 @@ class LoginForm(forms.Form):
                 self.user_cache.cliente
             except Cliente.DoesNotExist:
                 raise forms.ValidationError(message='Asegurese de tener una cuenta de cliente.')
+            from django.utils import timezone
+            self.user_cache.last_login = timezone.now()
+            self.user_cache.save()
         return self.cleaned_data
