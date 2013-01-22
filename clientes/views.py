@@ -23,10 +23,8 @@ def registro_nuevo_cliente(request, success_url=None,
     context = RequestContext(request)
     for key, value in extra_context.items():
         context[key] = callable(value) and value() or value
-    user = User.objects.get(username=request.session['user_id'])
-    cliente = Cliente.objects.get(user=user)
     return render_to_response(template_name,
-                              { 'form': form, 'cliente': cliente },
+                              { 'form': form },
                               context_instance=context)
 
 def cliente_login(request, extra_context=None):
