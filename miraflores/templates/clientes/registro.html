@@ -1,12 +1,12 @@
 {% extends "clientes/base_clientes.html" %}
 {% block content %}
-<div id="tabs">
+<div class="tabs">
    	<ul><li class="active">Registrarse</li></ul>
 </div>
-<div id="tabs-content">
+<div class="tabs-content">
    	<h2>Obteniendo una cuenta de Cliente</h2>
     <p>Con una cuenta de cliente usted podra ingresar a la zona de clientes.</p>
-	<div id="white-box">
+	<div class="white-box">
         <h3>Registro Nuevo Cliente</h3>
         <form action="." method="post">{% csrf_token %}
         {{ form.as_p }}

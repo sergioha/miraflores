@@ -1,16 +1,16 @@
 /************STYLE FOR SHOES & ESSENTIALS SECTION *************/
 
 /*-----Secondary Nav-----*/
-div#tabs{ width:565px; height:30px; margin:0 auto; padding-top:10px; }
-div#tabs ul{margin:0; padding:0;} 
-div#tabs li{margin:0; padding:0; float:left; border-top:1px solid #dbdbdb; border-left:1px solid #dbdbdb; background-color:#f3f2f2; }
-div#tabs li.last{border-right:1px solid #dbdbdb;}
-div#tabs li.active{border-bottom:none; height:31px; background-color:#ededed;}
-div#tabs li, div#tabs li a{display:block; height:23px; text-align:center; font-weight:bold; width:100px; padding-top:5px;}
-div#tabs li a:hover{}
+div.tabs{ width:565px; height:30px; margin:0 auto; padding-top:10px; }
+div.tabs ul{margin:0; padding:0;} 
+div.tabs li{margin:0; padding:0; float:left; border-top:1px solid #dbdbdb; border-left:1px solid #dbdbdb; background-color:#f3f2f2; }
+div.tabs li.last{border-right:1px solid #dbdbdb;}
+div.tabs li.active{border-bottom:none; height:31px; background-color:#ededed;}
+div.tabs li, div.tabs li a{display:block; height:23px; text-align:center; font-weight:bold; width:100px; padding-top:5px;}
+div.tabs li a:hover{}
 /*-----Secondary Nav Content-----*/
-div#tabs-content{width:543px; border:1px solid #dbdbdb; padding:15px 10px 10px; margin:0 auto; background-color:#ededed;}
-div#white-box{ width:auto; height:auto; padding:15px; border:1px solid #dbdbdb; position:relative; background-color:#ffffff;}
+div.tabs-content{width:543px; border:1px solid #dbdbdb; padding:15px 10px 10px; margin:0 auto; background-color:#ededed;}
+div.white-box{ width:auto; height:auto; padding:15px; border:1px solid #dbdbdb; position:relative; background-color:#ffffff;}
 
 /*--Start Goal and View Gallery links--*/							
 div#bottom-links ul{ margin:0; padding:0; margin-top:20px;}

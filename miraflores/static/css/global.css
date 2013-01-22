@@ -84,7 +84,7 @@ div#container{ width:924px; height:auto; background:url(../images/container_bg.p
 /************HEADER********************************************/
 div#header{ width:678px; height:68px; padding-right:18px}
 div#header h1#logo{margin-top:11px; margin-left:9px; float:left;}
-h1#logo a{ display:block; background:url(../images/runaroo_logo.png) no-repeat; width:231px; height:57px; text-indent:-9999px;}
+h1#logo a{ display:block; background:url(../images/miraflores_logo.png) no-repeat; width:231px; height:57px; text-indent:-9999px;}
 ul.top-links{ margin:48px 0 0; float:right;}
 
 /************CONTENT*******************************************/

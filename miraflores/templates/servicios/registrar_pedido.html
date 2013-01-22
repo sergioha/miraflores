@@ -11,9 +11,9 @@
 {% endblock %}
 {% block registrar %}class="active"{% endblock %}
 {% block tab-content %}
-<div id="tabs-content">
+<div class="tabs-content">
    	<h2>Registre su pedido ahora!!</h2>
-	<div id="white-box">
+	<div class="white-box">
 		{%if mensaje %}<span class="mensaje-exito">{{ mensaje }}</span>{% endif %}
         <h3>Registrar Nueva Orden</h3>
 		<form action="." method="post">{% csrf_token %}

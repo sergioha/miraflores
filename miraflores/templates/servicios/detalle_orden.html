@@ -1,9 +1,9 @@
 {% extends "clientes/base_clientes.html" %}
 {% block ordenes %}class="active"{% endblock %}
-{% block tab-content %}<div id="tabs-content">
+{% block tab-content %}<div class="tabs-content">
 {% if orden %}
    	<h2>Detalle de la orden {{ orden.pk }}</h2>
-	<div id="white-box">{% if detalles %}
+	<div class="white-box">{% if detalles %}
 	<h3>Ultimas Ordenes Registradas</h3>
 	<table>
 	<tr>
