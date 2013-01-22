@@ -11,6 +11,7 @@
     <p>Con una cuenta de cliente usted podra ingresar a la zona de clientes.</p>
 	<div id="white-box">
         <h3>Ingresar</h3>
+		{% if messages %}{% for message in messages %}<p>{{ message }}</p>{% endfor %}{% endif %}
         <form action="{% url "ingresar" %}" method="post" id="login-form">{% csrf_token %}
         {{ form.as_p }}
         <p><span id="form-buttons" class="clearfix">
