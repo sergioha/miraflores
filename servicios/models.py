@@ -84,7 +84,7 @@ class Orden(models.Model):
     cliente = models.ForeignKey(Cliente)
     cantidad = models.PositiveIntegerField('Cantidad de prendas')
     talla = models.IntegerField('Tallas de la Prenda',choices=TALLAS)
-    fecha_entrega = models.DateField('Fecha de Entrega', help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
+    fecha_entrega = models.DateField('Fecha de Entrega', null=True, blank=True, help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
     fecha_registro = models.DateTimeField('Fecha de Registro',auto_now=True, editable=False)
     observaciones = models.TextField(verbose_name='Observaciones:', max_length=250, blank=True, null=True)
     
@@ -116,7 +116,7 @@ class DetalleOrden(models.Model):
     orden = models.ForeignKey(Orden)
     servicio = models.ForeignKey(Servicio)
     prioridad = models.PositiveIntegerField('Pioridad para ejecutar el servicio', choices=PRIORIDAD, default=2)
-    fecha_ejecucion = models.DateField('Fecha Ejecucion',help_text='La fecha que se ejecutara el servicio en la empresa')
+    fecha_ejecucion = models.DateField('Fecha Ejecucion', null=True, blank=True, help_text='La fecha que se ejecutara el servicio en la empresa')
     terminado = models.BooleanField('Servicio Terminado', default = False)
 
     objects = models.Manager()
@@ -134,7 +134,7 @@ class DetalleOrden(models.Model):
         self.noterminados.por_tipo_fecha_ejecucion(tipo_servicio=self.servicio.tipo_servicio, fecha_ejecucion=self.fecha_ejecucion)        
 
     def save(self, *args, **kwargs):
-        self.fecha_ejecucion = detalle_pre_save(self)
+        #self.fecha_ejecucion = detalle_pre_save(self)
         #kwargs['fecha_ejecucion'] = detalle_pre_save(self, created=created, **kwargs)
         super(DetalleOrden, self).save(*args, **kwargs)
 
