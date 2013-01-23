@@ -15,8 +15,8 @@
 {% for detalle in detalles %}<tr>
 <td>{{ detalle.pk }}</td>
 <td>{{ detalle.servicio }}</td>
-<td>{{ detalle.fecha_ejecucion }}</td>
-<td>{{ detalle.terminado }}</td>
+<td>{% if detalle.fecha_ejecucion %}{{ detalle.fecha_ejecucion }}{% else %}No asignado{% endif %}</td>
+<td>{{ detalle.terminado|yesno:"Terminado,Pendiente" }}</td>
 </tr>
 {% endfor %}
 </table>
