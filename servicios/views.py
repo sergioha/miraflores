@@ -15,7 +15,7 @@ def registrar_orden(request, extra_context=None):
     user = User.objects.get(username=request.session['user_id'])
     cliente = Cliente.objects.get(user=user)
     if request.method == 'POST':
-        form = OrdenForm(queryset=Servicio.objects.all(), data=request.POST)
+        form = OrdenForm(queryset=Servicio.objects.order_by('tipo_servicio__prioridad'), data=request.POST)
         if form.is_valid():
             servicios = form.cleaned_data['servicios']
             cantidad = form.cleaned_data['cantidad']
@@ -27,9 +27,9 @@ def registrar_orden(request, extra_context=None):
                 detalle = DetalleOrden(orden=orden, servicio=servicio)
                 detalle.save()
             extra_context = {'mensaje':'Su Pedido fue registrado con exito!'}
-            form = OrdenForm(queryset=Servicio.objects.all())
+            form = OrdenForm(queryset=Servicio.objects.order_by('tipo_servicio__prioridad'))
     else:
-        form = OrdenForm(queryset=Servicio.objects.all())
+        form = OrdenForm(queryset=Servicio.objects.order_by('tipo_servicio__prioridad'))
     if extra_context is None:
         extra_context = {'titulo':'Registrar Pedido'}
     context = RequestContext(request)
@@ -49,7 +49,7 @@ def detalle_orden(request, pk=None):
     mensaje = None
     try:
         orden = Orden.objects.get(pk=pk, cliente=cliente)
-        detalles = DetalleOrden.objects.filter(orden=orden)
+        detalles = DetalleOrden.objects.filter(orden=orden).order_by('servicio__tipo_servicio__prioridad')
     except Orden.DoesNotExist:
         mensaje = 'Lo siento pero no se tiene registro de este proceso, por favor comunicarse con el Administrador.'
     return render_to_response('servicios/detalle_orden.html',

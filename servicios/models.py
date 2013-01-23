@@ -92,6 +92,7 @@ class Orden(models.Model):
         verbose_name = 'Orden'
         verbose_name_plural = 'Ordenes'
         ordering = ['fecha_registro','cliente']
+        get_latest_by = 'fecha_registro'
         
     def __unicode__(self):
         return 'Codigo de orden: %s' % self.pk
