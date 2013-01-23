@@ -17,25 +17,14 @@ div#bottom-links ul{ margin:0; padding:0; margin-top:20px;}
 div#bottom-links ul li.start-goal{ float:left;}
 div#bottom-links ul li.view-gallery{ float:right;}
 
-
-/************ADD SHOE PAGE*************/
-
-/*Review it and List yours buttons on Add shoe page*/
-div#white-box div#shoe-menu-options{ width:234px; margin:0 auto; padding:15px 0;}
-div#white-box div#shoe-menu-options ul{ margin:0; padding:0;}
-div#white-box div#shoe-menu-options li{ margin:0; padding:0; float:left;}
-div#white-box div#shoe-menu-options li a#reviewit{ display:block; background:url(../images/button_reviewit.png) no-repeat; 
-							width:97px; height:139px; text-indent:-9999px; margin-right:40px;}
-div#white-box div#shoe-menu-options li a#listyours{ display:block; background:url(../images/button_listyours.png) no-repeat; 
-							width:97px; height:139px; text-indent:-9999px;}
-
 div#white-box h3{ font-size:1em; line-height:1.5; color:#57508a;}
 /*---Add shoe form---*/
-form#add-shoe{ display:block; width:auto; padding:0 95px;}
-form#add-shoe span#form-buttons{ display:block; width:auto; height:auto; margin-top:25px;}
+form{ display:block; width:auto; padding:0 95px;}
+form span#form-buttons{ display:block; width:auto; height:auto; margin-top:25px;}
 form input#cancel-button, form input#edit-button{ background:none; border:none; background:url(../images/back_arrow.gif) no-repeat 0% 50%; 
 									color:#ec1d8d; font-weight:bold; cursor:pointer; padding:0 10px; float:left; width:auto;}
 form input#next-button, form input#submit-button, form input#done-button{ background:none; border:none; background:url(../images/next_arrow.gif) no-repeat 100% 50%; color:#ec1d8d; font-weight:bold; cursor:pointer; padding:0 10px; float:right; width:auto;}
+ul.errorlist { display:block; margin: 0px; padding: 15px 0px 0px; color:#ec1d8d; }
 /*----Confirmation message-----*/									
 div#confirmation-msg{ width:auto; height:32px; background:url(../images/confirmation_bg.png) no-repeat; margin-bottom:10px;}
 div#confirmation-msg div{ width:auto; height:32px; background:url(../images/confirmation_bgcorner.png) no-repeat right top;}

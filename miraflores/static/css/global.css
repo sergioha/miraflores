@@ -78,8 +78,6 @@ ul.horizontal-links li{ float:left; border-right:1px solid #ec1d8d; padding:1px 
 ul.horizontal-links li.last{ border:none; padding-right:0;}
 ul.horizontal-links li.first{ padding-left:0;}
 
-
-
 div#container{ width:924px; height:auto; background:url(../images/container_bg.png) no-repeat; margin:26px auto 0;}
 /************HEADER********************************************/
 div#header{ width:678px; height:68px; padding-right:18px}
@@ -97,7 +95,6 @@ div#central-column{ width:920px; padding:16px 18px 18px;}
 div#shoutout-section{ width:636px; padding:12px;}
 /*-----Intro section-----*/
 div#intro-section{ width:660px; position:relative; padding:0 0 18px;}
-div#user-info img{ float:left; border:3px solid #e1dede; width:120px; height:120px; margin-right:10px;}
 div#user-info em.hello-user{ color:#777777; font-style:normal; font-weight:bold; font-size:1.39em;}
 div#user-info span{ color:#7ba725; font-weight:inherit;}
 div#add-orden{ position:absolute; top:0px; right:0px;}
@@ -118,13 +115,11 @@ div#main-menu li a.laempresa{ width:109px;}
 div#main-menu li a.contactanos{ width:109px;}
 /*to set the Active menu item*/
 body#updates-page div#main-menu li a.updates{ background:none;}
-body#community-page div#main-menu li a.community{ background:none;}
-body#workouts-page div#main-menu li a.workouts{ background:none;}
 div#main-content{ width:660px; height:auto; padding:25px 0 0;}
 /*--------Messages----------*/
 .mensaje-exito { display: block; border: medium solid #57508a; padding: 7px; text-align: center; color: #57508a; font-weight: bold; }
 /*-----Footer-----*/
-div#footer{ width:924px; margin:0 auto;}
+div#footer{ width:924px; margin: 10px 125px;}
 div#footer, .push { height:40px;}
 div#footer ul{ margin:0; padding:0; list-style:none; float:left;}
 div#footer ul li{ float:left; padding:1px 10px 2px; border-right:1px solid #ec1d8d; line-height:0.7;}
