@@ -77,6 +77,11 @@ class ListaPrecios(models.Model):
         verbose_name_plural = 'Lista de Precios de Servicios'
         ordering = ['servicio','talla']
 
+    def get_precio_bolivianos(self):
+        if self.precio_bolivianos > 0.00:
+            return self.precio_bolivianos
+        #TODO convertir a dolares return self.
+
     def _unicode__(self):
         return '%s %s' % (self.servicio.nombre, self.tamano)
 
@@ -152,40 +157,3 @@ def detalle_pre_save(instance):
         return instance.fecha_ejecucion
 
 #pre_save.connect(detalle_pre_save, sender=DetalleOrden, weak=True)
-
-class Cronograma(models.Model):
-    user = models.ForeignKey(Cliente)
-    orden = models.ForeignKey(Orden)
-    cantidad = models.PositiveIntegerField('Cantidad')
-    talla = models.IntegerField('Talla',choices=TALLAS)
-    tipo_servicio = models.ForeignKey(TipoServicio)
-    nombre_tiposervicio = models.CharField('Nombre', max_length=35)
-    servicio = models.ForeignKey(Servicio)
-    nombre_servicio = models.CharField('Nombre', max_length=35)
-    fecha_ejecucion = models.DateField('Fecha Ejecucion',help_text='La fecha que se ejecutara el servicio en la empresa')
-    terminado = models.BooleanField('Terminado', default = False)
-    
-    def __unicode__(self):
-        return 'orden:%s servicio:%s fecha ejecucion:%s' % (self.orden, self.nombre_servicio, self.fecha_ejecucion)
-    
-    class Meta:
-        verbose_name = 'Cronograma de Ordenes'
-        verbose_name_plural = 'Cronograma de Ordenes'
-        db_table = 'servicios_cronograma'
-        managed = False
-        ordering = ['fecha_ejecucion','tipo_servicio']
-        
-
-class Disponibilidad(models.Model):
-    tipo_servicio = models.ForeignKey(TipoServicio, primary_key=True)
-    capacidad = models.IntegerField('Capacidad')
-    ocupado = models.IntegerField('Ocupado')
-    disponible = models.IntegerField('Disponible')
-    fecha_ejecucion = models.DateField('Fecha Ejecucion')
-    
-    class Meta:
-        verbose_name = 'Fechas Disponibles'
-        verbose_name_plural = 'Fechas Disponibles'
-        db_table = 'servicios_disponibilidad'
-        managed = False
-        ordering = ['fecha_ejecucion','tipo_servicio']
