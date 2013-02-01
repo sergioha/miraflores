@@ -102,19 +102,17 @@ div#ordenes{ position:absolute; top:21px; right:0px;}
 /*-----Main Menu-----*/
 div#main-menu{ width:660px; height:37px;}
 div#main-menu ul{width:660px; margin:0; padding:0;}
-div#main-menu li{ margin:0; padding:0; float:left; border-top:1px solid #dbdbdb; border-left:1px solid #dbdbdb; border-bottom:1px solid #dbdbdb;}
-div#main-menu li.last{border-right:1px solid #dbdbdb;}
-div#main-menu li a{ display:block; height:27px; text-align:center; color:#57508a; font-weight:bold;
- 					background:url(../images/menu_bg.jpg) no-repeat left bottom; padding-top:8px;}
-div#main-menu li a:hover{ background-position:left top;}
-div#main-menu li a.inicio{ width:108px;}
-div#main-menu li a.prelavado{ width:109px;}
-div#main-menu li a.efectos{ width:109px;}
-div#main-menu li a.planchado{ width:109px;}
-div#main-menu li a.laempresa{ width:109px;}
-div#main-menu li a.contactanos{ width:109px;}
+div#main-menu ul li{ margin:0; padding:0; float:left; border-top:1px solid #dbdbdb; border-left:1px solid #dbdbdb; border-bottom:1px solid #dbdbdb;}
+div#main-menu ul li.last{border-right:1px solid #dbdbdb;}
+div#main-menu ul li a{ display:block; height:27px; text-align:center; color:#57508a; font-weight:bold; padding-top:8px;}
+div#main-menu ul li a:hover{ color: #dbdbdb; }
+div#main-menu ul li a.inicio{ width:108px;}
+div#main-menu ul li a.prelavado{ width:109px;}
+div#main-menu ul li a.efectos{ width:109px;}
+div#main-menu ul li a.planchado{ width:109px;}
+div#main-menu ul li a.laempresa{ width:109px;}
+div#main-menu ul li a.contactanos{ width:109px;}
 /*to set the Active menu item*/
-body#updates-page div#main-menu li a.updates{ background:none;}
 div#main-content{ width:660px; height:auto; padding:25px 0 0;}
 /*--------Messages----------*/
 .mensaje-exito { display: block; border: medium solid #57508a; padding: 7px; text-align: center; color: #57508a; font-weight: bold; }

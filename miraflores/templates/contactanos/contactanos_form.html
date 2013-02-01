@@ -1,0 +1,29 @@
+{% extends "paginas/base_paginas.html" %}
+{% load cms_tags %}{% load ordenes_tags %}
+{% block content %}
+<div id="tabs-inicio">
+<div class="tabs">
+   	<ul>
+        <li class="active">Contactanos</li>
+    </ul>
+</div>
+<div class="tabs-content">
+    <div class="white-box">
+        <h4></h4>
+        <form action="." method="post" id="login-form">{% csrf_token %}
+        {{ form.as_p }}
+        <p>
+            <span id="form-buttons" class="clearfix">
+            <input id="cancel-button" type="submit" value="Enviar" />
+            </span>
+        </p>
+        </form>
+    </div>
+</div>
+<div class="tabs-content">
+    <div class="white-box">
+        <h4>Visitanos en cochabamba en:</h4>
+    </div>
+</div>
+</div>
+{% endblock %}

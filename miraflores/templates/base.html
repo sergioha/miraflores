@@ -50,14 +50,14 @@
         <ul class="horizontal-links top-links">
         	<li>{% if cliente %}{{ cliente.nombre_completo|title }}</li><li><a href="{% url salir %}">Salir</a></li>{% else %}<a href="{% url ingresar %}">Ingresar</a></li>
             <li><a href="/zonacliente/registro/">Registrarse</a></li>{% endif %}
-            <li class="last"><a href="#">Contactanos</a></li>
+            <li class="last"><a href="/contactanos/">Contactanos</a></li>
         </ul>
     </div>
     <div id="content">
     	<div id="central-column">
              <div id="main-menu">
-            	<ul>
-                	<li><a class="inicio" href="/inicio/">Inicio</a></li>
+                <ul>
+                	<li><a class="inicio" href="/">Inicio</a></li>
                     <li><a class="prelavado" href="/prelavado/">Pre Lavado</a></li>
                     <li><a class="efectos" href="/efectos/">Efectos</a></li>
                     <li><a class="planchado" href="/planchado/">Planchado</a></li>
@@ -73,9 +73,9 @@
 	<div id="footer">
     	<ul>
         	<li>2012 Lavanderia Miraflores</li>
-            <li><a href="/acerca/">Acerca</a></li>
-            <li><a href="/terminos/">Terminos de Servicio</a></li>
-          <li class="last"><a href="#">Siguenos en Facebook</a></li>
+            <li><a href="/laempresa/">Acerca</a></li>
+            <li><a href="/tos/">Terminos de Servicio</a></li>
+            <li class="last"><a href="#">Siguenos en Facebook</a></li>
         </ul>
 	</div>
 </div>

@@ -1,4 +1,5 @@
-{% load cms_tags sekizai_tags %}{% load admin_static %}<!doctype html>
+{% load cms_tags sekizai_tags %}{% load cache menu_tags %}
+</ul>{% load admin_static %}<!doctype html>
 <!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="es"> <![endif]-->
 <!--[if IE 7 ]> <html class="ie ie7 no-js" lang="es"> <![endif]-->
 <!--[if IE 8 ]> <html class="ie ie8 no-js" lang="es"> <![endif]-->
@@ -55,19 +56,19 @@ maximum-scale = 1.0 retains dimensions instead of zooming in if page width < dev
         <ul class="horizontal-links top-links">
         	<li>{% if cliente %}{{ cliente.nombre_completo|title }}</li><li><a href="{% url salir %}">Salir</a></li>{% else %}<a href="{% url ingresar %}">Ingresar</a></li>
             <li><a href="/zonacliente/registro/">Registrarse</a></li>{% endif %}
-            <li class="last"><a href="#">Contactanos</a></li>
+            <li class="last"><a href="/contactanos/">Contactanos</a></li>
         </ul>
     </div>
     <div id="content">
     	<div id="central-column">
              <div id="main-menu">
             	<ul>
-                	<li><a class="inicio" href="#">Inicio</a></li>
-                    <li><a class="prelavado" href="#">Pre Lavado</a></li>
-                    <li><a class="efectos" href="#">Efectos</a></li>
-                    <li><a class="planchado" href="#">Planchado</a></li>
-                    <li><a class="laempresa" href="#">La Empresa</a></li>
-                    <li class="last"><a class="contactanos" href="#">Contactanos</a></li>
+                	<li><a class="inicio" href="/">Inicio</a></li>
+                    <li><a class="prelavado" href="/prelavado/">Pre Lavado</a></li>
+                    <li><a class="efectos" href="/efectos/">Efectos</a></li>
+                    <li><a class="planchado" href="/planchado/">Planchado</a></li>
+                    <li><a class="laempresa" href="/laempresa/">La Empresa</a></li>
+                    <li class="last"><a class="contactanos" href="/contactanos/">Contactanos</a></li>
                 </ul>
             </div>
             <div id="main-content">{% block content %}{% endblock %}
@@ -77,9 +78,9 @@ maximum-scale = 1.0 retains dimensions instead of zooming in if page width < dev
     <div class="push"></div>
 <div id="footer">
     	<ul>
-        	<li>2012 Lavanderia Miraflores</li>
-            <li><a href="#">Acerca</a></li>
-            <li><a href="#">Terminos de Servicio</a></li>
+          <li>2012 Lavanderia Miraflores</li>
+          <li><a href="/laempresa/">Acerca</a></li>
+          <li><a href="/tos/">Terminos de Servicio</a></li>
           <li class="last"><a href="#">Siguenos en Facebook</a></li>
         </ul>
 </div>
