@@ -1,6 +1,6 @@
 {% extends "paginas/base_paginas.html" %}{% load cms_tags %}{% load ordenes_tags %}{% load admin_static %}{% block extrahead %}
 <link rel="stylesheet" href={% static "css/slider.css" %}>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="{% static "js/jquery.min.js"%}"></script>
 <script type="text/javascript" src="{% static "js/slider.js" %}"></script>{% endblock %}{% block content %}
 <div id="slideshow">
 	<ul class="slides">
