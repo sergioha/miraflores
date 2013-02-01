@@ -71,26 +71,21 @@ caption {background:none;}
 * html .clearfix {height: 1%;}/* Hides from IE-mac \*/
 .clearfix {display: block;}/* Hides from IE-mac \*/
 /*End General styles*/
-
 /****** General Style for Horizontal links*******/
 ul.horizontal-links{ padding:0;}
 ul.horizontal-links li{ float:left; border-right:1px solid #ec1d8d; padding:1px 10px 2px; line-height:0.7;}
 ul.horizontal-links li.last{ border:none; padding-right:0;}
 ul.horizontal-links li.first{ padding-left:0;}
-
-div#container{ width:924px; height:auto; background:url(../images/container_bg.png) no-repeat; margin:26px auto 0;}
+div#container{ width:924px; height:auto; background:url(/static/img/container_bg.png) no-repeat; margin: 0 auto; padding: 5px 20px;}
 /************HEADER********************************************/
 div#header{ width:678px; height:68px; padding-right:18px}
 div#header h1#logo{margin-top:11px; margin-left:9px; float:left;}
-h1#logo a{ display:block; background:url(../images/miraflores_logo.png) no-repeat; width:231px; height:57px; text-indent:-9999px;}
+h1#logo a{ display:block; background:url(/static/img/miraflores_logo.png) no-repeat; width:231px; height:57px; text-indent:-9999px;}
 ul.top-links{ margin:48px 0 0; float:right;}
-
 /************CONTENT*******************************************/
-
 div#content{ width:auto; height:auto;}
 div#central-column{ width:920px; padding:16px 18px 18px;}
 /************CENTRAL COLUMN*************/
-
 /*-----Shout out section-----*/
 div#shoutout-section{ width:636px; padding:12px;}
 /*-----Intro section-----*/

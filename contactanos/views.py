@@ -19,13 +19,11 @@ def contact_form(request, form_class=ContactForm,
             return HttpResponseRedirect(success_url)
     else:
         form = form_class(request=request)
-
     if extra_context is None:
         extra_context = {}
     context = RequestContext(request)
     for key, value in extra_context.items():
         context[key] = callable(value) and value() or value
-    
     return render_to_response(template_name,
                               { 'form': form },
                               context_instance=context)

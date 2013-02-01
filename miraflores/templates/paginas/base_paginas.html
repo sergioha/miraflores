@@ -48,44 +48,42 @@ maximum-scale = 1.0 retains dimensions instead of zooming in if page width < dev
 {% block extrastyle %}{% endblock %}
 {% block extrahead %}{% endblock %}
 <!-- all our JS is at the bottom of the page, except for Modernizr. -->
-<script src=" http://static.airtac.pro.bo/js/modernizr-1.7.min.js"></script>
+<script src="http://static.airtac.pro.bo/js/modernizr-1.7.min.js"></script>
 </head>
 <body>{% cms_toolbar %}
 <div id="container">
-	<div id="header">
+  <div id="header">
     	<h1 id="logo"><a href="/">Miraflores</a></h1>
         <ul class="horizontal-links top-links">
         	<li>{% if cliente %}{{ cliente.nombre_completo|title }}</li><li><a href="{% url salir %}">Salir</a></li>{% else %}<a href="{% url ingresar %}">Ingresar</a></li>
             <li><a href="/zonacliente/registro/">Registrarse</a></li>{% endif %}
             <li class="last"><a href="/contactanos/">Contactanos</a></li>
         </ul>
+  </div>
+  <div id="content">
+  	<div id="central-column">
+      <div id="main-menu">
+       	<ul>
+         	<li><a class="inicio" href="/">Inicio</a></li>
+            <li><a class="prelavado" href="/prelavado/">Pre Lavado</a></li>
+            <li><a class="efectos" href="/efectos/">Efectos</a></li>
+            <li><a class="planchado" href="/planchado/">Planchado</a></li>
+            <li><a class="laempresa" href="/laempresa/">La Empresa</a></li>
+            <li class="last"><a class="contactanos" href="/contactanos/">Contactanos</a></li>
+        </ul>
+      </div>
+      <div id="main-content">{% block content %}{% endblock %}</div>
     </div>
-    <div id="content">
-    	<div id="central-column">
-             <div id="main-menu">
-            	<ul>
-                	<li><a class="inicio" href="/">Inicio</a></li>
-                    <li><a class="prelavado" href="/prelavado/">Pre Lavado</a></li>
-                    <li><a class="efectos" href="/efectos/">Efectos</a></li>
-                    <li><a class="planchado" href="/planchado/">Planchado</a></li>
-                    <li><a class="laempresa" href="/laempresa/">La Empresa</a></li>
-                    <li class="last"><a class="contactanos" href="/contactanos/">Contactanos</a></li>
-                </ul>
-            </div>
-            <div id="main-content">{% block content %}{% endblock %}
-            </div>
-        </div>
-    </div>
-    <div class="push"></div>
-<div id="footer">
+  </div>
+  <div class="push"></div>
+  <div id="footer">
     	<ul>
           <li>2012 Lavanderia Miraflores</li>
           <li><a href="/laempresa/">Acerca</a></li>
           <li><a href="/tos/">Terminos de Servicio</a></li>
           <li class="last"><a href="#">Siguenos en Facebook</a></li>
         </ul>
-</div>
-</div>
+  </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script>window.jQuery || document.write("<script src='http://static.airtac.pro.bo/js/jquery-1.5.1.min.js'>\x3C/script>")</script>
 <!-- this is where we put our custom functions -->
@@ -101,5 +99,6 @@ _gaq.push(['_trackPageview']);
 </script>
 -->
 {% render_block "js" %}
+</div>
 </body>
 </html>

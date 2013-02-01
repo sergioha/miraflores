@@ -1,5 +1,6 @@
 {% extends "paginas/base_paginas.html" %}{% load cms_tags %}{% load ordenes_tags %}{% load admin_static %}{% block extrahead %}
 <link rel="stylesheet" href={% static "css/slider.css" %}>
+<link rel="stylesheet" href={% static "css/inicio.css" %}>
 <script src="{% static "js/jquery.min.js"%}"></script>
 <script type="text/javascript" src="{% static "js/slider.js" %}"></script>{% endblock %}{% block content %}
 <div id="slideshow">
@@ -10,44 +11,44 @@
     <span class="arrow next"></span>
 </div>
 <div id="tabs-inicio">
-<div class="tabs">
-   	<ul>
-        <li class="active">Cotizacion</li>
-    </ul>
-</div>
-<div class="tabs-content">
-    <div class="white-box">
-        <h4>Formulario de Cotizacion Rapida</h4>
-        {% cotizar %}
+  <div id="cotizar"><div class="tabs">
+       	<ul>
+            <li class="active">Cotizacion</li>
+        </ul>
     </div>
-</div>
-<div class="tabs">
-   	<ul>
-        <li class="active">Ingresar</li>
-    </ul>
-</div>
-<div class="tabs-content">
-    <div class="white-box">
-        <h4>Ingresar</h4>
-<form action="/zonacliente/ingresar/" method="post" id="login-form">{% csrf_token %}
-    <p><label for="id_username">Documento:</label> <input id="id_username" type="text" name="username" maxlength="15" /></p>
-    <p><label for="id_password">Contrasena:</label> <input id="id_password" type="password" name="password" maxlength="15" /></p>
-    <p><span id="form-buttons" class="clearfix"><input id="cancel-button" type="submit" value="Ingresar" /></span></p>
-</form>
-<p>Si usted no tiene una cuenta puede <a href="/zonacliente/registro/">registrarse en el sistema</a> y realizar seguimiento
-    en linea del proceso de sus pedidos!</p>
-</div>
+    <div class="tabs-content">
+        <div class="white-box">
+            <h4>Formulario de Cotizacion Rapida</h4>
+            {% cotizar %}
+        </div>
+  </div></div>
+  <div id="ingresar"><div class="tabs">
+       	<ul>
+            <li class="active">Ingresar</li>
+        </ul>
     </div>
-</div>
-<div class="tabs">
-   	<ul>
-        <li class="active">Contactanos</li>
-    </ul>
-</div>
-<div class="tabs-content">
-    <div class="white-box">
-        <h4>Visitanos en cochabamba en:</h4>
+    <div class="tabs-content">
+        <div class="white-box">
+            <h4>Ingresar</h4>
+            <form action="/zonacliente/ingresar/" method="post" id="login-form">{% csrf_token %}
+                <p><label for="id_username">Documento:</label> <input id="id_username" type="text" name="username" maxlength="15" /></p>
+                <p><label for="id_password">Contrasena:</label> <input id="id_password" type="password" name="password" maxlength="15" /></p>
+                <p><span id="form-buttons" class="clearfix"><input id="cancel-button" type="submit" value="Ingresar" /></span></p>
+            </form>
+            <p>Si usted no tiene una cuenta puede <a href="/zonacliente/registro/">registrarse en el sistema</a> y realizar seguimiento
+            en linea del proceso de sus pedidos!</p>
+        </div>
+  </div></div>
+  <div id="contactanos"><div class="tabs">
+       	<ul>
+            <li class="active">Contactanos</li>
+        </ul>
     </div>
-</div>
+    <div class="tabs-content">
+        <div class="white-box">
+            <h4>Visitanos en cochabamba en:</h4>
+            <iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=-17.446855,-66.114525&amp;num=1&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll=-17.44794,-66.113319&amp;spn=0.016376,0.017252&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?q=-17.446855,-66.114525&amp;num=1&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll=-17.44794,-66.113319&amp;spn=0.016376,0.017252&amp;z=14&amp;source=embed" style="color:#0000FF;text-align:left">Ver mapa mas grande</a></small>
+        </div>
+  </div></div>
 </div>
 {% endblock %}

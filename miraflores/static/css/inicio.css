@@ -1,0 +1,6 @@
+div#tabs-inicio{ width: 920px; clear:both;}
+div.tabs-content { }
+div#cotizar, div#contactanos, div#ingresar { float:left;}
+input[type="text"] { width:120px;}
+div#cotizar span.form-buttons{ display:block; clear:both;}
+div#cotizar ul li { display: block; float: left; max-width:100px; margin-right:20px;}
