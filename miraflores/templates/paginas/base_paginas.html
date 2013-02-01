@@ -1,12 +1,10 @@
-{% load cms_tags sekizai_tags %}{% load cache menu_tags %}
-</ul>{% load admin_static %}<!doctype html>
+{% load cms_tags sekizai_tags %}{% load cache menu_tags %}{% load admin_static %}<!doctype html>
 <!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="es"> <![endif]-->
 <!--[if IE 7 ]> <html class="ie ie7 no-js" lang="es"> <![endif]-->
 <!--[if IE 8 ]> <html class="ie ie8 no-js" lang="es"> <![endif]-->
 <!--[if IE 9 ]> <html class="ie ie9 no-js" lang="es"> <![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js" lang="es"><!--<![endif]-->
 <!-- the "no-js" class is for Modernizr. -->
-{% render_block "css" %}
 <head id="www-lavanderiamiraflores-com" data-template-set="html5-reset">
 <meta charset="utf-8">
 <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
@@ -46,6 +44,9 @@ maximum-scale = 1.0 retains dimensions instead of zooming in if page width < dev
 <link rel="stylesheet" href={% static "css/global.css" %}>
 <link rel="stylesheet" href={% static "css/forms.css" %}>
 <link rel="stylesheet" href={% static "css/pages.css" %}>
+{% render_block "css" %}
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
 <!-- all our JS is at the bottom of the page, except for Modernizr. -->
 <script src=" http://static.airtac.pro.bo/js/modernizr-1.7.min.js"></script>
 </head>
