@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     (r'^zonacliente/orden/', include('servicios.urls')),  
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^tinymce/', include('tinymce.urls')),
     url(r'^', include('cms.urls')),
 )
 if settings.DEBUG:

@@ -51,7 +51,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 CMS_TEMPLATES = (
     ('inicio.html', 'Pagina de Inicio'),
-    ('example.html','Ejemplo'),
+    ('paginas.html','Pagina Comun'),
 )
 CMS_MENU_TITLE_OVERWRITE = True
 ROOT_URLCONF = 'miraflores.urls'
@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'configuraciones',
     'reportes',
     'contactanos',
+    'tinymce',
 )
 
 LOGIN_REDIRECT_URL = '/cliente/%(username)s/'
