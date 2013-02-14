@@ -12,15 +12,14 @@
 	<div class="white-box">
         <h3>Ingresar</h3>
 		{% if messages %}{% for message in messages %}<p>{{ message }}</p>{% endfor %}{% endif %}
-        <form action="{% url "ingresar" %}" method="post" id="login-form">{% csrf_token %}
-        {{ form.as_p }}
-        <p><span id="form-buttons" class="clearfix">
-            <input id="cancel-button" type="submit" value="Ingresar" />
-        </span></p>
-        </form>
+        <form action="/zonacliente/ingresar/" method="post" id="login-form">{% csrf_token %}
+                <p><label for="id_username">Documento:</label> <input id="id_username" type="text" name="username" maxlength="15" /></p>
+                <p><label for="id_password">Contrasena:</label> <input id="id_password" type="password" name="password" maxlength="15" /></p>
+                <p><span id="form-buttons" class="clearfix"><input id="cancel-button" type="submit" value="Ingresar" /></span></p>
+            </form>
+            <p>Si usted no tiene una cuenta puede <a href="/zonacliente/registro/">registrarse en el sistema</a> y realizar seguimiento
+            en linea del proceso de sus pedidos!</p>
     </div>
-    <p>Si usted no tiene una cuenta puede <a href="/zonacliente/registro/">registrarse en el sistema</a> y realizar seguimiento
-    en linea del proceso de sus pedidos!</p>
 </div>
 <script type="text/javascript">
 document.getElementById('id_username').focus()
