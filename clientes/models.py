@@ -45,7 +45,7 @@ class Cliente(models.Model):
         verbose_name_plural = 'Cuentas de Clientes'
         
     def __unicode__(self):
-        return '%s con ci: %s' % (self.get_nombre_completo(), self.user.username)
+        return self.nombre_completo
 
     def set_password(self, contrasena):
         self.user.set_password(contrasena)
@@ -56,12 +56,21 @@ class Cliente(models.Model):
     def get_absolute_url(self):
         return "/cliente/%s" % urlquote(self.user.username)
 
-    def get_nombre_completo(self):
-        return self.user.get_full_name()
+    def nombre_completo(self):
+        return "%s %s" % (self.user.first_name, self.user.last_name)
+
+    def activo(self):
+        return self.user.is_active
+
+    def fecha_registro(self):
+        return self.user.date_joined
+
+    def fecha_ultimo_acceso(self):
+        return self.user.last_login
 
     @property
     def nombre_completo(self):
-        return self.user.get_full_name()
+        return "%s %s" % (self.user.first_name, self.user.last_name) 
 
     @property
     def ci(self):

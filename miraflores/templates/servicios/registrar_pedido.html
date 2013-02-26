@@ -1,0 +1,29 @@
+{% extends "clientes/base_clientes.html" %}
+{% block extrahead %}
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" rel="Stylesheet" />
+<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+<script type="text/javascript"> 
+  $(function(){
+    $("#id_fecha_entrega").datepicker({ dateFormat:'dd/mm/yy'});
+  });
+</script>
+{% endblock %}
+{% block registrar %}class="active"{% endblock %}
+{% block tab-content %}
+<div class="tabs-content">
+   	<h2>Registre su pedido ahora!!</h2>
+	<div class="white-box">
+		{%if mensaje %}<span class="mensaje-exito">{{ mensaje }}</span>{% endif %}
+        <h3>Registrar Nueva Orden</h3>
+		<form action="." method="post">{% csrf_token %}
+        {% if servicios %}<p>{{ servicios }}</p>{% else %}{{ form.as_p }}{% endif %}
+        <p>
+            <span id="form-buttons" class="clearfix">
+            <input id="cancel-button" type="submit" value="Registrar" />
+            </span>
+        </p>
+        </form>
+    </div>
+</div>
+{% endblock %}

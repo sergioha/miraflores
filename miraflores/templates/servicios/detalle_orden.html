@@ -1,0 +1,32 @@
+{% extends "clientes/base_clientes.html" %}
+{% block ordenes %}class="active"{% endblock %}
+{% block tab-content %}<div class="tabs-content">
+{% if orden %}
+   	<h2>Detalle de la orden {{ orden.pk }}</h2>
+	<div class="white-box">{% if detalles %}
+	<h3>Ultimas Ordenes Registradas</h3>
+	<table>
+	<tr>
+		<th>Codigo Servicio</th>
+		<th>Servicio</th>
+		<th>Fecha Ejecucion</th>
+		<th>Estado</th>
+	</tr>
+{% for detalle in detalles %}<tr>
+<td>{{ detalle.pk }}</td>
+<td>{{ detalle.servicio }}</td>
+<td>{% if detalle.fecha_ejecucion %}{{ detalle.fecha_ejecucion }}{% else %}No asignado{% endif %}</td>
+<td>{{ detalle.terminado|yesno:"Terminado,Pendiente" }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% else %}
+<h3>Ultimas Ordenes Registradas</h3>
+<p>Lo siento usted no tiene ninguna orden registrada.</p>
+<p>Puede ingresar una orden ahora: <a href="/zonacliente/orden/registrar/">Registrar Orden de Pedido +</a></p>
+</div>
+{% endif %}
+</div>
+{% endif %}
+{% endblock %}

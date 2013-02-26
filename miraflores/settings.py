@@ -49,8 +49,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sekizai.context_processors.sekizai',
 )
 CMS_TEMPLATES = (
-    ('inicio.html', 'Template'),
-    ('example.html','Pagina de Inicio'),
+    ('inicio.html', 'Pagina de Inicio'),
+    ('example.html','Ejemplo'),
 )
 CMS_MENU_TITLE_OVERWRITE = True
 ROOT_URLCONF = 'miraflores.urls'

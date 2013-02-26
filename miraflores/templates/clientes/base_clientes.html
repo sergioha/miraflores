@@ -4,6 +4,31 @@
 {% block branding %}
 <h1 id="site-name">Lavanderia MiraFlores :: Zona clientes</h1>
 {% endblock %}
-{% block nav-global %}{% endblock %}
-{% block content %}{% endblock %}
+{% block content %}
+<div id="shoutout-section">
+    <p>Realize su primera orden y verificara la calidad de nuestros servicios!</p>
+</div>
+<div id="intro-section">
+    <div id="user-info">
+        <em class="hello-user">Bienvenido <span>{{ cliente|title }}!</span></em>
+        <p>Su ultima orden fue registrada el <span>27 de Julio del 2011</span></p>
+    </div>
+    <div id="add-orden">
+        <a href="/zonacliente/orden/registrar/">Registrar Orden de Pedido +</a>
+    </div>
+    <div id="ordenes">
+        <a href="/zonacliente/orden/">Verifica el estado de tus ordenes</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="tabs">
+   	<ul>
+        <li {% block inicio %}{% endblock %}><a href="/zonacliente/inicio/">Inicio</a></li>
+        <li {% block ordenes %}{% endblock %}><a href="/zonacliente/orden/">Ordenes</a></li>
+        <li {% block registrar %}{% endblock %}><a href="/zonacliente/orden/registrar/">Registrar</a></li>
+    </ul>
+</div>
+{% block tab-content %}
+{% endblock %}
+{% endblock %}
 {% endblock %}

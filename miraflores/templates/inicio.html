@@ -1,5 +1,46 @@
 {% extends "paginas/base_paginas.html" %}
 {% load cms_tags %}
-{% block base_content %}
+{% block content %}
+<div id="banner">
+    
+</div>
+<div id="tabs-inicio">
+<div class="tabs">
+   	<ul>
+        <li class="active">Cotizacion</li>
+    </ul>
+</div>
+<div class="tabs-content">
+    <div class="white-box">
+        <h4>Formulario de Cotizacion Rapida</h4>
+    </div>
+</div>
+<div class="tabs">
+   	<ul>
+        <li class="active">Ingresar</li>
+    </ul>
+</div>
+<div class="tabs-content">
+    <div class="white-box">
+        <h4>Ingresar</h4>
+<form action="/zonacliente/ingresar/" method="post" id="login-form">{% csrf_token %}<div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='qsKZ2C2N9lmBvIEYdFyMzsl9pIFCkFsK' /></div>
+    <p><label for="id_username">Documento:</label> <input id="id_username" type="text" name="username" maxlength="15" /></p>
+    <p><label for="id_password">Contrasena:</label> <input id="id_password" type="password" name="password" maxlength="15" /></p>
+    <p><span id="form-buttons" class="clearfix"><input id="cancel-button" type="submit" value="Ingresar" /></span></p>
+</form>
+</div>
+    </div>
+</div>
+<div class="tabs">
+   	<ul>
+        <li class="active">Contactanos</li>
+    </ul>
+</div>
+<div class="tabs-content">
+    <div class="white-box">
+        <h4>Visitanos en cochabamba en:</h3>
+    </div>
+</div>
+</div>
   {% placeholder contenido_principal %}
 {% endblock %}

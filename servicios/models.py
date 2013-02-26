@@ -13,10 +13,18 @@ TALLAS = (
     (3,'Grande')
 )
 
+PRIORIDAD_EJECUCION = (
+    (1, 'Primero en Ejecutar'),
+    (2, 'Segundo en Ejecutar'),
+    (3, 'Tercero en Ejecutar'),
+    (4, 'Cuarto en Ejecutar'),
+)
+
 class TipoServicio(models.Model):
     nombre = models.CharField('Nombre', max_length=35, unique=True)
     descripcion = models.TextField('Descripcion')
     capacidad = models.PositiveIntegerField('Capacidad', help_text='Capacidad en numero de piezas por dia.')
+    prioridad = models.IntegerField('Prioridad de ejecucion', choices = PRIORIDAD_EJECUCION)
 
     class Meta:
         verbose_name = 'Tipo de Servicios'
@@ -76,7 +84,7 @@ class Orden(models.Model):
     cliente = models.ForeignKey(Cliente)
     cantidad = models.PositiveIntegerField('Cantidad de prendas')
     talla = models.IntegerField('Tallas de la Prenda',choices=TALLAS)
-    fecha_entrega = models.DateField('Fecha de Entrega', help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
+    fecha_entrega = models.DateField('Fecha de Entrega', null=True, blank=True, help_text='Fecha que se desea que la empresa inicie el proceso con sus prendas.')
     fecha_registro = models.DateTimeField('Fecha de Registro',auto_now=True, editable=False)
     observaciones = models.TextField(verbose_name='Observaciones:', max_length=250, blank=True, null=True)
     
@@ -84,6 +92,7 @@ class Orden(models.Model):
         verbose_name = 'Orden'
         verbose_name_plural = 'Ordenes'
         ordering = ['fecha_registro','cliente']
+        get_latest_by = 'fecha_registro'
         
     def __unicode__(self):
         return 'Codigo de orden: %s' % self.pk
@@ -108,7 +117,7 @@ class DetalleOrden(models.Model):
     orden = models.ForeignKey(Orden)
     servicio = models.ForeignKey(Servicio)
     prioridad = models.PositiveIntegerField('Pioridad para ejecutar el servicio', choices=PRIORIDAD, default=2)
-    fecha_ejecucion = models.DateField('Fecha Ejecucion',help_text='La fecha que se ejecutara el servicio en la empresa')
+    fecha_ejecucion = models.DateField('Fecha Ejecucion', null=True, blank=True, help_text='La fecha que se ejecutara el servicio en la empresa')
     terminado = models.BooleanField('Servicio Terminado', default = False)
 
     objects = models.Manager()
@@ -126,7 +135,7 @@ class DetalleOrden(models.Model):
         self.noterminados.por_tipo_fecha_ejecucion(tipo_servicio=self.servicio.tipo_servicio, fecha_ejecucion=self.fecha_ejecucion)        
 
     def save(self, *args, **kwargs):
-        self.fecha_ejecucion = detalle_pre_save(self)
+        #self.fecha_ejecucion = detalle_pre_save(self)
         #kwargs['fecha_ejecucion'] = detalle_pre_save(self, created=created, **kwargs)
         super(DetalleOrden, self).save(*args, **kwargs)
 

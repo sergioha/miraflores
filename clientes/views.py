@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response, render, redirect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
+from django.contrib import messages
 
 from clientes.forms import ClienteRegistroForm, LoginForm
 from clientes.models import Cliente, User
@@ -13,7 +14,8 @@ def registro_nuevo_cliente(request, success_url=None,
         form = ClienteRegistroForm(request.POST) 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(success_url or reverse('registro_completado'))
+            messages.success(request, 'Registro exitoso!! Ahora puede ingresar usando su cuenta.')
+            return redirect(reverse('ingresar'))
     else:
         form = ClienteRegistroForm()
     if extra_context is None:
@@ -25,7 +27,7 @@ def registro_nuevo_cliente(request, success_url=None,
                               { 'form': form },
                               context_instance=context)
 
-def cliente_login(request):
+def cliente_login(request, extra_context=None):
     if 'user_id' in request.session:
         request.session.flush()
     if request.method == 'POST':
@@ -35,12 +37,19 @@ def cliente_login(request):
             return redirect('/zonacliente/inicio/')
     else:
         form = LoginForm()
-    return render(request,'clientes/login.html',{'form':form})
+    if extra_context is None:
+        extra_context = {'titulo':'Ingresar a Zona Cliente'}
+    context = RequestContext(request)
+    for key, value in extra_context.items():
+        context[key] = callable(value) and value() or value
+    return render_to_response('clientes/login.html',
+                              { 'form': form },
+                              context_instance=context)
 
 def cliente_logout(request):
     if 'user_id' in request.session:
         request.session.flush()
-    return redirect('/')
+    return redirect(reverse('ingresar'))
 
 def cliente_inicio(request, extra_context=None):
     if 'user_id' not in request.session:
