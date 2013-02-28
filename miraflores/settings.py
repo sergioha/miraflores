@@ -37,6 +37,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
+    'configuraciones.middleware.ConfiguracionMiddleware'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -82,6 +83,7 @@ INSTALLED_APPS = (
     'sekizai',
     'clientes',
     'servicios',
+    'configuraciones',
 )
 
 LOGIN_REDIRECT_URL = '/cliente/%(username)s/'

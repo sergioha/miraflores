@@ -63,5 +63,5 @@ def cliente_inicio(request, extra_context=None):
         context[key] = callable(value) and value() or value
     return render_to_response('clientes/inicio.html',
                               { 'mensaje': 'Bienvenido!!',
-                                'cliente': cliente},
+                                'cliente': cliente, 'tipo_cambio': request.session['tipo_cambio']},
                               context_instance=context)

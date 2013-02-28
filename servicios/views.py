@@ -36,7 +36,7 @@ def registrar_orden(request, extra_context=None):
     for key, value in extra_context.items():
         context[key] = callable(value) and value() or value
     return render_to_response('servicios/registrar_pedido.html',
-                              { 'form': form, 'cliente': cliente },
+                              { 'form': form, 'cliente': cliente, 'tipo_cambio': request.session['tipo_cambio'] },
                               context_instance=context)
 
 def detalle_orden(request, pk=None):
@@ -53,7 +53,8 @@ def detalle_orden(request, pk=None):
     except Orden.DoesNotExist:
         mensaje = 'Lo siento pero no se tiene registro de este proceso, por favor comunicarse con el Administrador.'
     return render_to_response('servicios/detalle_orden.html',
-                              { 'cliente': cliente, 'orden':orden, 'detalles':detalles, 'mensaje':mensaje })
+                              { 'cliente': cliente, 'orden':orden, 'detalles':detalles,
+                               'mensaje':mensaje, 'tipo_cambio': request.session['tipo_cambio'] })
 
 def listar_ordenes(request):
     if 'user_id' not in request.session:
@@ -61,5 +62,23 @@ def listar_ordenes(request):
     user = User.objects.get(username=request.session['user_id'])
     cliente = Cliente.objects.get(user=user)
     return render_to_response('servicios/listar_ordenes.html',
-                              { 'cliente': cliente })
+                              { 'cliente': cliente, 'tipo_cambio': request.session['tipo_cambio'] })
+
+def cotizar(request):
+    if request.method == 'POST':
+        form = CotizarForm(request.POST)
+        if form.is_valid():
+            servicios = form.cleaned_data['servicios']
+            cantidad = form.cleaned_data['cantidad']
+            talla = form.cleaned_data['talla']
+            total = 0.00
+            for servicio in servicios:
+                precio = servicio.listaprecios_set.get(talla=talla).get_precio_bolivianos
+                total += precio*cantidad
+            return render_to_response('servicios/cotizar.html',
+                              { 'servicios':servicios, 'cantidad':cantidad, 'talla':talla, 'total': total })
+    else:
+        form = CotizarForm()
+    return render_to_response('servicios/cotizar.html',
+                              { 'form':form })
     

@@ -11,7 +11,7 @@
 <div id="intro-section">
     <div id="user-info">
         <em class="hello-user">Bienvenido <span>{{ cliente|title }}!</span></em>
-        <p>Su ultima orden fue registrada el <span>27 de Julio del 2011</span></p>
+        {% if tipo_cambio %}<p>Tipo de Cambio <span>{{ tipo_cambio }} Bs</span></p>{% endif %}
     </div>
     <div id="add-orden">
         <a href="/zonacliente/orden/registrar/">Registrar Orden de Pedido +</a>
