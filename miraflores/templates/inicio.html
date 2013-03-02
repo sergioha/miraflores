@@ -1,5 +1,5 @@
 {% extends "paginas/base_paginas.html" %}
-{% load cms_tags %}
+{% load cms_tags %}{% load ordenes_tags %}
 {% block content %}
 <div id="banner">
     
@@ -13,6 +13,7 @@
 <div class="tabs-content">
     <div class="white-box">
         <h4>Formulario de Cotizacion Rapida</h4>
+        {% cotizar %}
     </div>
 </div>
 <div class="tabs">
@@ -28,6 +29,8 @@
     <p><label for="id_password">Contrasena:</label> <input id="id_password" type="password" name="password" maxlength="15" /></p>
     <p><span id="form-buttons" class="clearfix"><input id="cancel-button" type="submit" value="Ingresar" /></span></p>
 </form>
+<p>Si usted no tiene una cuenta puede <a href="/zonacliente/registro/">registrarse en el sistema</a> y realizar seguimiento
+    en linea del proceso de sus pedidos!</p>
 </div>
     </div>
 </div>

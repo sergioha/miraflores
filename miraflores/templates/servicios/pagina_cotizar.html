@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Cotizar :: Zona clientes{% endblock %}
+{% block cuerpo %}
+{% block branding %}
+<h1 id="site-name">Lavanderia MiraFlores :: Zona clientes</h1>
+{% endblock %}
+{% block content %}
+<div id="shoutout-section">
+    <p>Realize su primera orden y verificara la calidad de nuestros servicios!</p>
+	<p>Si aun no esta registrado en nuestro sistema por favor visite la pagina de <a href="/zonacliente/registro/">registro</a>,
+	llene sus datos y le contactaremos de inmediato para que pueda realizar sus ordenes de pedido en linea.</p>
+	<p>En la Zona cliente usted podra tener informacion del estado de su pedido, que servicios fueron ejecutados
+	y que servicios estan en espera de ser ejecutados y la fecha de entrega de su orden.</p>
+</div>
+<div id="intro-section">
+    <div id="user-info">
+        <em class="hello-user"><span>Bienvenido!</span></em>
+        {% if tipo_cambio %}<p>Tipo de Cambio <span>{{ tipo_cambio }} Bs</span></p>{% endif %}
+    </div>
+    <div id="add-orden">
+        <a href="/zonacliente/registro/">Registrarse en el sistema +</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="tabs">
+   	<ul>
+        <li class="active"><a href="/zonacliente/orden/cotizar/">Cotizar</a></li>
+    </ul>
+</div>
+<div class="tabs-content">
+   	<h2>Realize su cotizacion ahora!!</h2>
+	<div class="white-box">
+		{%if mensaje %}<span class="mensaje-exito">{{ mensaje }}</span>{% endif %}
+        <h3>Cotizar</h3>
+		{% if form %}
+		<form action="/zonacliente/orden/cotizar/" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <p>
+            <span id="form-buttons" class="clearfix">
+            <input id="cancel-button" type="submit" value="Cotizar" />
+            </span>
+        </p>
+        </form>
+		{% else %}
+		 <p>Gracias por realizar su cotizacion de simulacion.</p>
+		 <p>El costo de su cotizacion es de Bolivianos <span class="total">{{ total }}</span>, si usted desea conocer con 
+		 mayor detalle por favor contactenos.</p>
+		 <p><a href="/zonacliente/registro/">Registrese en el sistema </a>y registre sus ordenes de pedidos
+		 y podra saber en tiempo real el estado de su orden y la fecha exacta de entrega.</p>
+		{% endif %}
+    </div>
+</div>
+{% endblock %}
+{% endblock %}
+

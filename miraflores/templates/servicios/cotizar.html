@@ -1,0 +1,8 @@
+<form action="/zonacliente/orden/cotizar/" method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <p>
+    <span id="form-buttons" class="clearfix">
+    <input id="cancel-button" type="submit" value="Cotizar" />
+    </span>
+  </p>
+</form>

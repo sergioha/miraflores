@@ -53,7 +53,8 @@ maximum-scale = 1.0 retains dimensions instead of zooming in if page width < dev
 	<div id="header">
     	<h1 id="logo"><a href="/">Miraflores</a></h1>
         <ul class="horizontal-links top-links">
-        	<li><a href="#">Ingresar</a></li>
+        	<li>{% if cliente %}{{ cliente.nombre_completo|title }}</li><li><a href="{% url salir %}">Salir</a></li>{% else %}<a href="{% url ingresar %}">Ingresar</a></li>
+            <li><a href="/zonacliente/registro/">Registrarse</a></li>{% endif %}
             <li class="last"><a href="#">Contactanos</a></li>
         </ul>
     </div>
