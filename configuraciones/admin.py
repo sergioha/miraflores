@@ -7,6 +7,9 @@ from configuraciones.models import Configuracion
 
 class SingletonModelAdmin(admin.ModelAdmin):
 
+    list_display = ('pk', 'tipo_cambio',)
+    list_displa_links = ('pk',)
+    list_editable = ('tipo_cambio',)
     change_form_template = "configuraciones/change_form.html"
     actions_on_top = False
     actions_on_bottom = False

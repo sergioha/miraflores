@@ -11,7 +11,7 @@ class Configuracion(models.Model):
         return '%s' % self.pk
 
     def save(self, *args, **kwargs):
-        self.id=1
+        self.pk=1
         super(Configuracion, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
