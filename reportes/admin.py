@@ -4,7 +4,7 @@ from reportes.models import Cronograma, Disponibilidad, Retrasos, SinFechaEjecuc
 class CronogramaAdmin(admin.ModelAdmin):
     fields = ('user', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
     list_display = ('user', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
-    list_displa_links = ('user', 'orden', 'servicio',)
+    list_display_links = ('user', 'orden', 'servicio',)
     list_filter = ('fecha_ejecucion', 'user', 'tipo_servicio', 'servicio', 'terminado',)
     readonly_fields = ('user', 'orden', 'cantidad', 'talla', 'tipo_servicio', 'servicio', 'fecha_ejecucion', 'terminado',)
     actions_on_top = False
