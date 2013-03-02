@@ -5,7 +5,7 @@ from django.template import RequestContext
 
 from clientes.models import Cliente, User
 
-from servicios.forms import OrdenForm
+from servicios.forms import OrdenForm, CotizarForm
 from servicios.models import Servicio, Orden, DetalleOrden
 
 def registrar_orden(request, extra_context=None):
@@ -64,21 +64,26 @@ def listar_ordenes(request):
     return render_to_response('servicios/listar_ordenes.html',
                               { 'cliente': cliente, 'tipo_cambio': request.session['tipo_cambio'] })
 
-def cotizar(request):
+def cotizar(request, extra_context=None):
     if request.method == 'POST':
-        form = CotizarForm(request.POST)
+        form = CotizarForm(queryset=Servicio.objects.all(), data=request.POST)
         if form.is_valid():
             servicios = form.cleaned_data['servicios']
             cantidad = form.cleaned_data['cantidad']
             talla = form.cleaned_data['talla']
-            total = 0.00
+            total = float('0.00')
             for servicio in servicios:
-                precio = servicio.listaprecios_set.get(talla=talla).get_precio_bolivianos
-                total += precio*cantidad
-            return render_to_response('servicios/cotizar.html',
+                precio = servicio.listaprecios_set.get(talla=talla).get_precio_bolivianos()
+                total += float(precio*cantidad)
+            return render_to_response('servicios/pagina_cotizar.html',
                               { 'servicios':servicios, 'cantidad':cantidad, 'talla':talla, 'total': total })
     else:
         form = CotizarForm()
-    return render_to_response('servicios/cotizar.html',
-                              { 'form':form })
+    if extra_context is None:
+        extra_context = {'titulo':'Registrar Pedido'}
+    context = RequestContext(request)
+    for key, value in extra_context.items():
+        context[key] = callable(value) and value() or value
+    return render_to_response('servicios/pagina_cotizar.html',
+                              { 'form':form }, context_instance=context)
     

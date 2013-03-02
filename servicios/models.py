@@ -29,7 +29,7 @@ class TipoServicio(models.Model):
     class Meta:
         verbose_name = 'Tipo de Servicios'
         verbose_name_plural = 'Tipo de Servicios'
-        ordering = ['nombre']
+        ordering = ['prioridad']
 
     def __unicode__(self):
         return self.nombre

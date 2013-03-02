@@ -26,3 +26,12 @@ class OrdenForm(forms.Form):
         super(OrdenForm, self).__init__(*args, **kwargs)
         if queryset:
             self.fields['servicios'] = forms.ModelMultipleChoiceField(queryset=queryset, widget=forms.CheckboxSelectMultiple())
+
+class CotizarForm(forms.Form):
+    cantidad = forms.IntegerField('# de Piezas', min_value=1)
+    talla = forms.ChoiceField(choices=TALLAS, required=True, label='Seleccione la Talla')
+    
+    def __init__(self, queryset=None, *args, **kwargs):
+        super(CotizarForm, self).__init__(*args, **kwargs)
+        if queryset:
+            self.fields['servicios'] = forms.ModelMultipleChoiceField(queryset=queryset, widget=forms.CheckboxSelectMultiple())
