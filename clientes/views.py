@@ -37,14 +37,8 @@ def cliente_login(request, extra_context=None):
             return redirect('/zonacliente/inicio/')
     else:
         form = LoginForm()
-    if extra_context is None:
-        extra_context = {'titulo':'Ingresar a Zona Cliente'}
-    context = RequestContext(request)
-    for key, value in extra_context.items():
-        context[key] = callable(value) and value() or value
     return render_to_response('clientes/login.html',
-                              { 'form': form },
-                              context_instance=context)
+                              { 'form': form })
 
 def cliente_logout(request):
     if 'user_id' in request.session:
