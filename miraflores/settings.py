@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'servicios',
     'configuraciones',
     'reportes',
+    'contactanos',
 )
 
 LOGIN_REDIRECT_URL = '/cliente/%(username)s/'

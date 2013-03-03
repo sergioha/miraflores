@@ -51,7 +51,7 @@ def server_update():
         #run("cp updates_server.txt requirements.txt")
         #run("pip-2.7 install requirements.txt")
         run(". ../env/bin/activate && ./manage.py syncdb")
-        run("./manage.py migrate")
+        #run("./manage.py migrate")
         run(". apache2/bin/restart")
 
 def server_migrate():

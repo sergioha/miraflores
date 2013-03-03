@@ -4,6 +4,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^contactanos/', include('contactanos.urls')),
     (r'^zonacliente/', include('clientes.urls')),
     (r'^zonacliente/orden/', include('servicios.urls')),  
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
